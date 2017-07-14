@@ -25,12 +25,12 @@
 
 #pragma mark - Declarations
 
-// Classes
+/* Classes */
 SPKHistoryHandler *historyHandler = nil;
 SPKHistoryTable *historyTable = nil;
 SPKBookmarkHandler *bookmarkHandler = nil;
 
-// Search engine query strings
+/* Search engine query strings */
 extern NSString *googleSearchString;
 extern NSString *bingSearchString;
 extern NSString *yahooSearchString;
@@ -38,20 +38,20 @@ extern NSString *duckDuckGoSearchString;
 extern NSString *aolSearchString;
 extern NSString *customSearchString;
 
-// Search engine default homepages
+/* Search engine default homepages */
 extern NSString *googleDefaultURL;
 extern NSString *bingDefaultURL;
 extern NSString *yahooDefaultURL;
 extern NSString *duckDuckGoDefaultURL;
 extern NSString *aolDefaultURL;
 
-// Strings for "Help" menu bar item
+/* Strings for "Help" menu bar item */
 extern NSString *appReportIssueURL;
 extern NSString *appExistingIssuesURL;
 extern NSString *appReleasesURL;
 extern NSString *appRoadmapURL;
 
-// Strings related to page indicator
+/* Strings related to page indicator */
 extern NSString *secureSparkPageText;
 extern NSString *secureSparkPageDetailText;
 extern NSString *secureHTTPSPageText;
@@ -59,11 +59,15 @@ extern NSString *insecureHTTPSPageText;
 extern NSString *secureHTTPSPageDetailText;
 extern NSString *insecureHTTPSPageDetailText;
 
-// Miscellaneous strings
+/* Miscellaneous strings */
 extern NSString *betaOperatingSystemDisclaimerText;
 extern NSString *currentChromeVersion;
 
-// Mutable strings
+/* Appcast URL strings */
+extern NSString *stableChannelAppcastURL;
+extern NSString *nightlyChannelAppcastURL;
+
+/* Mutable strings */
 extern NSString *appVersionString;
 extern NSString *appBuildString;
 extern NSString *operatingSystemVersionString;
@@ -84,7 +88,7 @@ extern NSString *bytesReceivedFormatted;
 extern NSString *expectedLengthFormatted;
 extern NSString *lastSession;
 
-// Webpage loading-related strings
+/* Webpage loading-related strings */
 extern NSString *searchString;
 extern NSString *homepageString;
 extern NSString *urlString;
@@ -96,6 +100,12 @@ extern NSString *colorChosen;
 extern NSString *urlToString;
 extern NSString *websiteURL;
 extern NSString *faviconURLString;
+
+/* Settings panel strings */
+extern NSString *resetAllSettingsText;
+extern NSString *resetAllSettingsDetailText;
+extern NSString *resetAllSettingsButtonText;
+extern NSString *cancelButtonText;
 
 // Theme colors
 NSColor *defaultColor = nil;
@@ -365,15 +375,20 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
         NSLog(@"Resetting release channel to \"nightly\"");
         
         [defaults setObject:@"nightly" forKey:@"currentReleaseChannel"];
-        [[SUUpdater sharedUpdater] setFeedURL:[NSURL URLWithString:@"https://insleep.tech/spark/appcast-dev.xml"]];
+        [[SUUpdater sharedUpdater] setFeedURL:[NSURL URLWithString:nightlyChannelAppcastURL]];
+    }
+    
+    if([[defaults objectForKey:@"currentReleaseChannel"] isEqual: @"beta"]) { // Create fallback from "beta" channel for those migrating from previous versions
+        NSLog(@"Resetting release channel to \"stable\"");
+        
+        [defaults setObject:@"stable" forKey:@"currentReleaseChannel"];
+        [[SUUpdater sharedUpdater] setFeedURL:[NSURL URLWithString:stableChannelAppcastURL]];
     }
     
     if([[defaults objectForKey:@"currentReleaseChannel"] isEqual: @"stable"]) {
-        [[SUUpdater sharedUpdater] setFeedURL:[NSURL URLWithString:@"https://insleep.tech/spark/appcast.xml"]];
-    } else if([[defaults objectForKey:@"currentReleaseChannel"] isEqual: @"beta"]) {
-        [[SUUpdater sharedUpdater] setFeedURL:[NSURL URLWithString:@"https://insleep.tech/spark/appcast-beta.xml"]];
+        [[SUUpdater sharedUpdater] setFeedURL:[NSURL URLWithString:stableChannelAppcastURL]];
     } else if([[defaults objectForKey:@"currentReleaseChannel"] isEqual: @"nightly"]) {
-        [[SUUpdater sharedUpdater] setFeedURL:[NSURL URLWithString:@"https://insleep.tech/spark/appcast-dev.xml"]];
+        [[SUUpdater sharedUpdater] setFeedURL:[NSURL URLWithString:nightlyChannelAppcastURL]];
     }
     
     self.faviconImage.hidden = YES;
@@ -584,10 +599,10 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
 #pragma mark - IBActions
 
 - (IBAction)resetAllSettings:(id)sender {
-    self.popupWindowTitle.stringValue = @"Reset Settings and Restart?";
-    self.popupWindowText.stringValue = [NSString stringWithFormat:@"This will reset your startup page, release channel, search engine, bookmarks, and theme. A browser restart is required for this to take effect."];
-    self.popupWindowBtn1.title = @"Reset All Settings";
-    self.popupWindowBtn2.title = @"Cancel";
+    self.popupWindowTitle.stringValue = resetAllSettingsText;
+    self.popupWindowText.stringValue = [NSString stringWithFormat:@"%@", resetAllSettingsDetailText];
+    self.popupWindowBtn1.title = resetAllSettingsButtonText;
+    self.popupWindowBtn2.title = cancelButtonText;
     self.popupWindowBtn1.action = @selector(resetAllSettingsBtnClicked:);
     self.popupWindow.isVisible = YES;
     [self.popupWindow makeKeyAndOrderFront:nil];
@@ -1172,7 +1187,6 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
         
         [self setHomepageWithString:googleDefaultURL];
     } else {
-        
         homepageString = self.homepageTextField.stringValue;
         
         [self setHomepageWithString:homepageString];

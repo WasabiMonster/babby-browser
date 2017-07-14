@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="17A264c" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="17A306f" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
@@ -692,13 +692,12 @@ Spark is made possible by the WebKit open source project and other open source s
                                         <popUpButton verticalHuggingPriority="750" misplaced="YES" id="DBB-e5-yay">
                                             <rect key="frame" x="407" y="66" width="161" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                            <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="5vz-Ww-6jw">
+                                            <popUpButtonCell key="cell" type="push" title="Stable" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="4YV-0A-Ncg" id="5vz-Ww-6jw">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="menu"/>
                                                 <menu key="menu" id="mEE-YO-AGn">
                                                     <items>
                                                         <menuItem title="Stable" id="4YV-0A-Ncg"/>
-                                                        <menuItem title="Beta" id="zYs-HB-zYL"/>
                                                         <menuItem title="Nightly" id="Po8-8f-tys"/>
                                                     </items>
                                                 </menu>
