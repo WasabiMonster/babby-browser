@@ -7,6 +7,7 @@
 //  You may copy, distribute and modify the software as long as you track changes/dates in source files. Any modifications to or software including (via compiler) GPL-licensed code must also be made available under the GPL along with build & install instructions.
 
 #import "AppDelegate.h"
+#import "SPKGlobalStrings.h"
 #import "SPKHistoryHandler.h"
 #import "SPKHistoryTable.h"
 #import "SPKBookmarkHandler.h"
@@ -30,38 +31,71 @@ SPKHistoryTable *historyTable = nil;
 SPKBookmarkHandler *bookmarkHandler = nil;
 
 // Search engine query strings
-NSString *googleSearchString = @"https://www.google.com/search?q=%@";
-NSString *bingSearchString = @"https://www.bing.com/search?q=%@";
-NSString *yahooSearchString = @"https://search.yahoo.com/search?p=%@";
-NSString *duckDuckGoSearchString = @"https://www.duckduckgo.com/%@";
-NSString *aolSearchString = @"https://search.aol.com/aol/search?q=%@";
-NSString *customSearchString = nil;
+extern NSString *googleSearchString;
+extern NSString *bingSearchString;
+extern NSString *yahooSearchString;
+extern NSString *duckDuckGoSearchString;
+extern NSString *aolSearchString;
+extern NSString *customSearchString;
 
 // Search engine default homepages
-NSString *googleDefaultURL = @"https://www.google.com/";
-NSString *bingDefaultURL = @"https://www.bing.com/";
-NSString *yahooDefaultURL = @"https://www.yahoo.com/";
-NSString *duckDuckGoDefaultURL = @"https://www.duckduckgo.com/";
-NSString *aolDefaultURL = @"https://www.aol.com/";
+extern NSString *googleDefaultURL;
+extern NSString *bingDefaultURL;
+extern NSString *yahooDefaultURL;
+extern NSString *duckDuckGoDefaultURL;
+extern NSString *aolDefaultURL;
 
 // Strings for "Help" menu bar item
-NSString *appReportIssueURL = @"https://www.github.com/insleep/spark-web-browser/issues/new?title=Describe%20your%20feature%20request%20or%20bug%20report,%20succinctly&body=**Spark%20version:**%20%0A%20**Spark%20build:**%20%0A%20**Release%20channel:**%20%0A%20**macOS%20version:**%20%0A%0A%20**Description:**%20%0A%0A%20**Steps%20to%20reproduce:**%20%0A%0A%20**Expected%20results:**%20%0A%0A%20**Actual%20results:**%20";
-NSString *appExistingIssuesURL = @"https://www.github.com/insleep/spark-web-browser/issues/";
-NSString *appReleasesURL = @"https://www.github.com/insleep/spark-web-browser/releases/tag/%@/";
-NSString *appRoadmapURL = @"https://trello.com/b/TPd5oizl/spark-roadmap/";
+extern NSString *appReportIssueURL;
+extern NSString *appExistingIssuesURL;
+extern NSString *appReleasesURL;
+extern NSString *appRoadmapURL;
 
 // Strings related to page indicator
-NSString *secureSparkPageText = @"You are viewing a secure Spark page."; // Text shown when a secure Spark page is loaded
-NSString *secureSparkPageDetailText = @"Your information is private when it is sent to secure Spark pages."; // Detail text shown when a secure Spark page is loaded
-NSString *secureHTTPSPageText = @"Your connection to this site is secure."; // Text shown when a secure site is loaded
-NSString *insecureHTTPSPageText = @"Your connection to this site is not secure."; // Text shown when an insecure site is loaded
-NSString *secureHTTPSPageDetailText = @"Your information (for example, passwords or credit card numbers) is private when it is sent to this site."; // Detail text shown when a secure site is loaded
-NSString *insecureHTTPSPageDetailText = @"You should not enter any sensitive information on this site (for example, passwords or credit cards)."; // Detail text shown when an insecure site is loaded
+extern NSString *secureSparkPageText;
+extern NSString *secureSparkPageDetailText;
+extern NSString *secureHTTPSPageText;
+extern NSString *insecureHTTPSPageText;
+extern NSString *secureHTTPSPageDetailText;
+extern NSString *insecureHTTPSPageDetailText;
 
 // Miscellaneous strings
-NSString *betaOperatingSystemDisclaimerText = @"You are running a build of macOS 10.13 High Sierra that is not officially supported by Spark (%@). Please be aware that Spark may function improperly."; // Disclaimer shown when user is running a non-supported beta build of macOS 10.13
+extern NSString *betaOperatingSystemDisclaimerText;
+extern NSString *currentChromeVersion;
 
-NSString *currentChromeVersion = @"59.0.3071.104"; // Used when setting user agent
+// Mutable strings
+extern NSString *appVersionString;
+extern NSString *appBuildString;
+extern NSString *operatingSystemVersionString;
+extern NSString *operatingSystemBuildString;
+extern NSString *macOSProductName;
+extern NSString *customMacOSProductName;
+extern NSString *releaseChannel;
+extern NSString *editedVersionString;
+extern NSString *userAgent;
+extern NSString *clippedTitle;
+extern NSString *suggestedFilename;
+extern NSString *clippedFilename;
+extern NSString *destinationFilename;
+extern NSString *homeDirectory;
+extern NSString *downloadLocation;
+extern NSString *downloadLocationEdited;
+extern NSString *bytesReceivedFormatted;
+extern NSString *expectedLengthFormatted;
+extern NSString *lastSession;
+
+// Webpage loading-related strings
+extern NSString *searchString;
+extern NSString *homepageString;
+extern NSString *urlString;
+extern NSString *editedURLString;
+extern NSString *capitalizedReleaseChannel;
+extern NSString *uncapitalizedReleaseChannel;
+extern NSString *searchEngineChosen;
+extern NSString *colorChosen;
+extern NSString *urlToString;
+extern NSString *websiteURL;
+extern NSString *faviconURLString;
 
 // Theme colors
 NSColor *defaultColor = nil;
@@ -96,39 +130,7 @@ NSMutableArray *currentHistoryTitlesArray = nil; // Mutable array for history pa
 long long expectedLength = 0; // Expected length of a file being downloaded
 bool downloadOverride = NO; // Boolean for whether or not to download a file even if WebView can display it
 
-// Mutable strings
-NSString *appVersionString = nil; // Spark version number
-NSString *appBuildString = nil; // Spark build number
-NSString *operatingSystemVersionString = nil; // macOS version number
-NSString *operatingSystemBuildString = nil; // macOS build number
-NSString *macOSProductName = nil; // macOS product name
-NSString *customMacOSProductName = nil; // Edited macOS product name
-NSString *releaseChannel = nil; // Spark release channel
-NSString *editedVersionString = nil; // Edited macOS version string
-NSString *userAgent = nil; // Spark user agent, used when loading webpages
-NSString *clippedTitle = nil; // Title used within the titleStatus string
-NSString *suggestedFilename = nil; // Filename suggested when downloading files
-NSString *clippedFilename = nil; // Suggested filename with ellipsis suffix
-NSString *destinationFilename = nil; // Directory where downloaded files are stored
-NSString *homeDirectory = nil; // User home directory
-NSString *downloadLocation = nil; // Download location
-NSString *downloadLocationEdited = nil; // Download location, edited to remove special characters
-NSString *bytesReceivedFormatted = nil; // Bytes received (file download) (formatted)
-NSString *expectedLengthFormatted = nil; // Expected length of file being downloaded (formatted)
-NSString *lastSession = nil; // Value from NSUserDefaults of lastSession
-
 // Objects related (somewhat) to loading webpages
-NSString *searchString = nil; // String used when initiating a search query
-NSString *homepageString = nil; // Current homepage chosen
-NSString *urlString = nil; // Initial string to load a webpage from
-NSString *editedURLString = nil; // Edited string to load a webpage from
-NSString *capitalizedReleaseChannel = nil; // Spark release channel, including capital letters
-NSString *uncapitalizedReleaseChannel = nil; // Spark release channel, not including capital letters
-NSString *searchEngineChosen = nil; // Current search engine chosen
-NSString *colorChosen = nil; // Current theme color stored in NSUserDefaults
-NSString *urlToString = nil; // NSURL converted to a NSString, used when handling spark:// URL events
-NSString *websiteURL = nil; // Current website URL
-NSString *faviconURLString = nil; // URL for the service that retrieves favicons
 NSURL *eventURL = nil; // Used when handling spark:// URL events
 NSURL *faviconURL = nil; // NSURL converted from faviconURLString
 NSURL *candidateURL = nil; // String value of addressBar as an NSURL
