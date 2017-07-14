@@ -2,7 +2,7 @@
 //  AppDelegate.h
 //  Spark
 //
-//  Copyright (c) 2014-2017 Insleep
+//  Copyright (c) 2014-2017 Jonathan Wukitsch / Insleep
 //  This code is distributed under the terms and conditions of the GNU license.
 //  You may copy, distribute and modify the software as long as you track changes/dates in source files. Any modifications to or software including (via compiler) GPL-licensed code must also be made available under the GPL along with build & install instructions.
 
@@ -11,7 +11,7 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
-// Declarations
+/* Declarations */
 
 #pragma mark - IBOutlets
 @property (assign, nonatomic) IBOutlet NSWindow *window;
@@ -77,6 +77,7 @@
 @property (assign, nonatomic) IBOutlet NSView *bookmarkAddedView;
 @property (assign, nonatomic) IBOutlet NSTextField *bookmarkAddedName;
 
+#pragma mark - Miscellaneous properties
 @property (nonatomic, assign) long bytesReceived;
 
 #pragma mark - IBActions
@@ -92,6 +93,7 @@
 - (IBAction)setTopBarColor:(id)sender;
 - (IBAction)setCustomColor:(id)sender;
 - (IBAction)reportIssueAboutWindow:(id)sender;
+- (IBAction)reportIssue:(id)sender;
 - (IBAction)closeDownloadingView:(id)sender;
 - (IBAction)saveCustomSearchEngine:(id)sender;
 - (IBAction)savePage:(id)sender;

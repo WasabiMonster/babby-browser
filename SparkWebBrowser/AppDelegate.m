@@ -2,7 +2,7 @@
 //  AppDelegate.m
 //  Spark
 //
-//  Copyright (c) 2014-2017 Insleep
+//  Copyright (c) 2014-2017 Jonathan Wukitsch / Insleep
 //  This code is distributed under the terms and conditions of the GNU license.
 //  You may copy, distribute and modify the software as long as you track changes/dates in source files. Any modifications to or software including (via compiler) GPL-licensed code must also be made available under the GPL along with build & install instructions.
 
@@ -29,6 +29,24 @@
 SPKHistoryHandler *historyHandler = nil;
 SPKHistoryTable *historyTable = nil;
 SPKBookmarkHandler *bookmarkHandler = nil;
+
+/* General strings */
+extern NSString *appVersionString;
+extern NSString *appBuildString;
+extern NSString *operatingSystemVersionString;
+extern NSString *operatingSystemBuildString;
+extern NSString *macOSProductName;
+extern NSString *customMacOSProductName;
+extern NSString *releaseChannel;
+extern NSString *editedVersionString;
+extern NSString *userAgent;
+extern NSString *clippedTitle;
+extern NSString *lastSession;
+extern NSString *currentChromeVersion;
+
+/* Appcast URL strings */
+extern NSString *stableChannelAppcastURL;
+extern NSString *nightlyChannelAppcastURL;
 
 /* Search engine query strings */
 extern NSString *googleSearchString;
@@ -59,34 +77,16 @@ extern NSString *insecureHTTPSPageText;
 extern NSString *secureHTTPSPageDetailText;
 extern NSString *insecureHTTPSPageDetailText;
 
-/* Miscellaneous strings */
-extern NSString *betaOperatingSystemDisclaimerText;
-extern NSString *currentChromeVersion;
-
-/* Appcast URL strings */
-extern NSString *stableChannelAppcastURL;
-extern NSString *nightlyChannelAppcastURL;
-
-/* Mutable strings */
-extern NSString *appVersionString;
-extern NSString *appBuildString;
-extern NSString *operatingSystemVersionString;
-extern NSString *operatingSystemBuildString;
-extern NSString *macOSProductName;
-extern NSString *customMacOSProductName;
-extern NSString *releaseChannel;
-extern NSString *editedVersionString;
-extern NSString *userAgent;
-extern NSString *clippedTitle;
-extern NSString *suggestedFilename;
-extern NSString *clippedFilename;
-extern NSString *destinationFilename;
-extern NSString *homeDirectory;
+/* Strings used when downloading files */
+extern NSString *downloadFailedTitle;
 extern NSString *downloadLocation;
 extern NSString *downloadLocationEdited;
 extern NSString *bytesReceivedFormatted;
 extern NSString *expectedLengthFormatted;
-extern NSString *lastSession;
+extern NSString *suggestedFilename;
+extern NSString *clippedFilename;
+extern NSString *destinationFilename;
+extern NSString *homeDirectory;
 
 /* Webpage loading-related strings */
 extern NSString *searchString;
@@ -101,13 +101,30 @@ extern NSString *urlToString;
 extern NSString *websiteURL;
 extern NSString *faviconURLString;
 
+/* Strings shown on spark:// pages */
+extern NSString *betaOperatingSystemDisclaimerText;
+
 /* Settings panel strings */
-extern NSString *resetAllSettingsText;
+
+// "General" panel
+extern NSString *setReleaseChannelTitle;
+extern NSString *setReleaseChannelConfirmBtnText;
+extern NSString *setReleaseChannelRestartLaterBtnText;
+
+// "Search" panel
+extern NSString *customSearchEngineInvalidURLText;
+extern NSString *customSearchEngineEmptyText;
+
+// "Reset" panel
+extern NSString *resetAllSettingsTitle;
 extern NSString *resetAllSettingsDetailText;
 extern NSString *resetAllSettingsButtonText;
+
+// Misc.
+extern NSString *genericErrorTitle;
 extern NSString *cancelButtonText;
 
-// Theme colors
+/* Theme colors */
 NSColor *defaultColor = nil;
 NSColor *rubyRedColor = nil;
 NSColor *deepAquaColor = nil;
@@ -120,7 +137,7 @@ NSColor *hotPinkColor = nil;
 NSColor *darkGrayColor = nil;
 NSData *customColorData = nil;
 
-// General app setup
+/* General app setup */
 NSUserDefaults *defaults = nil; // Shortcut to [NSUserDefaults standardUserDefaults]
 NSDictionary *infoDict = nil; // Spark Info.plist
 NSDictionary *sv = nil; // macOS SystemVersion.plist
@@ -140,7 +157,7 @@ NSMutableArray *currentHistoryTitlesArray = nil; // Mutable array for history pa
 long long expectedLength = 0; // Expected length of a file being downloaded
 bool downloadOverride = NO; // Boolean for whether or not to download a file even if WebView can display it
 
-// Objects related (somewhat) to loading webpages
+/* Objects related (somewhat) to loading webpages */
 NSURL *eventURL = nil; // Used when handling spark:// URL events
 NSURL *faviconURL = nil; // NSURL converted from faviconURLString
 NSURL *candidateURL = nil; // String value of addressBar as an NSURL
@@ -599,8 +616,8 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
 #pragma mark - IBActions
 
 - (IBAction)resetAllSettings:(id)sender {
-    self.popupWindowTitle.stringValue = resetAllSettingsText;
-    self.popupWindowText.stringValue = [NSString stringWithFormat:@"%@", resetAllSettingsDetailText];
+    self.popupWindowTitle.stringValue = resetAllSettingsTitle;
+    self.popupWindowText.stringValue = resetAllSettingsDetailText;
     self.popupWindowBtn1.title = resetAllSettingsButtonText;
     self.popupWindowBtn2.title = cancelButtonText;
     self.popupWindowBtn1.action = @selector(resetAllSettingsBtnClicked:);
@@ -639,8 +656,8 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
         // Text field is empty
         NSLog(@"Error: custom search engine text field is empty.");
         
-        self.errorPanelTitle.stringValue = @"Error";
-        self.errorPanelText.stringValue = [NSString stringWithFormat:@"An error occurred: you did not enter any text. Please enter a valid URL and try again."];
+        self.errorPanelTitle.stringValue = genericErrorTitle;
+        self.errorPanelText.stringValue = customSearchEngineEmptyText;
         self.errorWindow.isVisible = YES;
         [self.errorWindow makeKeyAndOrderFront:nil];
         [NSApp activateIgnoringOtherApps:YES];
@@ -648,11 +665,11 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
     } else if([self.customSearchEngineField.stringValue hasPrefix:@"http://"] || [self.customSearchEngineField.stringValue hasPrefix:@"https://"]) {
         [self saveCustomSearchEngineText:self];
     } else {
-        // String is not a URL
-        NSLog(@"Error: custom search engine text field does not contain a URL.");
+        // String is not a valid URL
+        NSLog(@"Error: custom search engine text field does not contain a valid URL.");
         
-        self.errorPanelTitle.stringValue = @"Error";
-        self.errorPanelText.stringValue = [NSString stringWithFormat:@"An error occurred: the text you entered is not a valid URL. Please enter a valid URL and try again."];
+        self.errorPanelTitle.stringValue = genericErrorTitle;
+        self.errorPanelText.stringValue = customSearchEngineInvalidURLText;
         self.errorWindow.isVisible = YES;
         [self.errorWindow makeKeyAndOrderFront:nil];
         [NSApp activateIgnoringOtherApps:YES];
@@ -1170,10 +1187,10 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
     [defaults setObject:[NSString stringWithFormat:@"%@", uncapitalizedReleaseChannel] forKey:@"currentReleaseChannel"];
     [defaults setInteger:self.releaseChannelPicker.indexOfSelectedItem forKey:@"releaseChannelIndex"];
     
-    self.popupWindowTitle.stringValue = @"Set Release Channel and Restart?";
+    self.popupWindowTitle.stringValue = setReleaseChannelTitle;
     self.popupWindowText.stringValue = [NSString stringWithFormat:@"Spark release channel will be set to: %@.\n\nA browser restart is required for this to take effect.", uncapitalizedReleaseChannel];
-    self.popupWindowBtn1.title = @"Set Release Channel";
-    self.popupWindowBtn2.title = @"Restart Later";
+    self.popupWindowBtn1.title = setReleaseChannelConfirmBtnText;
+    self.popupWindowBtn2.title = setReleaseChannelRestartLaterBtnText;
     self.popupWindowBtn1.action = @selector(setReleaseChannelBtnClicked:);
     self.popupWindow.isVisible = YES;
     [self.popupWindow makeKeyAndOrderFront:nil];
@@ -1288,8 +1305,8 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
         // Text field does not contain query text.
         NSLog(@"Error: custom search engine text field does not contain query text.");
         
-        self.errorPanelTitle.stringValue = @"Error";
-        self.errorPanelText.stringValue = [NSString stringWithFormat:@"An error occurred: the text you entered is not a valid URL. Please enter a valid URL and try again."];
+        self.errorPanelTitle.stringValue = genericErrorTitle;
+        self.errorPanelText.stringValue = customSearchEngineInvalidURLText;
         self.errorWindow.isVisible = YES;
         [self.errorWindow makeKeyAndOrderFront:nil];
         [NSApp activateIgnoringOtherApps:YES];
@@ -1711,7 +1728,7 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
     
     [self.bytesDownloadedText setStringValue:@"Download Failed"];
     
-    self.errorPanelTitle.stringValue = @"Error Downloading File";
+    self.errorPanelTitle.stringValue = downloadFailedTitle;
     self.errorPanelText.stringValue = [NSString stringWithFormat:@"An error occurred while downloading the file you requested.\n\nError: %@ %@", [error localizedDescription], [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]];
     self.errorWindow.isVisible = YES;
     [self.errorWindow makeKeyAndOrderFront:nil];
@@ -1889,8 +1906,8 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
     // Only report feedback for the main frame.
     if(frame == [sender mainFrame]) {
         
-        lastSession = [[defaults objectForKey:@"lastSession"] stringByReplacingOccurrencesOfString:@"https://" withString:@""];
-        lastSession = [lastSession stringByReplacingOccurrencesOfString:@"http://" withString:@""];
+        lastSession = [[defaults objectForKey:@"lastSession"] stringByReplacingOccurrencesOfString:@"https://" withString:@""]; // Strip https:// from lastSession variable
+        lastSession = [lastSession stringByReplacingOccurrencesOfString:@"http://" withString:@""]; // Strip http:// from lastSession variable
         
         if([lastSession rangeOfString:@"/"].location != NSNotFound) {
             lastSession = [lastSession substringToIndex:[lastSession rangeOfString:@"/"].location];
@@ -1904,7 +1921,7 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
         self.loadingIndicator.hidden = YES;
         self.faviconImage.hidden = NO;
         
-        if([self.addressBar.stringValue hasPrefix: @"spark:"]) { // Check whether or not a spark: page is being loaded
+        if([self.addressBar.stringValue hasPrefix: @"spark:"]) { // Check whether or not a spark:// page is being loaded
             self.faviconImage.image = [NSImage imageNamed:@"favicon.ico"];
         }
         
@@ -1935,6 +1952,8 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
         if([[defaults objectForKey:@"untrustedSitesArray"] containsObject:self.addressBar.stringValue]) {
             [self.addressBar setTextColor:[NSColor redColor]];
             
+            [defaults setBool:YES forKey:@"insecureHTTPSOverride"]; // In reality, we're not overriding insecure HTTPS safety features. This bool is set so that the address bar text color doesn't change to black even on an insecure webpage.
+            
             // Show page status image + view
             self.pageStatusImage.hidden = NO;
             self.pageStatusImage.image = [NSImage imageNamed:NSImageNameLockUnlockedTemplate];
@@ -1942,7 +1961,9 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
             self.sparkSecurePageText.stringValue = insecureHTTPSPageText;
             self.sparkSecurePageText.textColor = [NSColor colorWithRed:0.88 green:0.23 blue:0.19 alpha:1.0];
             self.sparkSecurePageDetailText.stringValue = insecureHTTPSPageDetailText;
-        } else {
+        }
+        
+        if([defaults boolForKey:@"insecureHTTPSOverride"] == NO) {
             [self.addressBar setTextColor:[NSColor blackColor]];
         }
         
@@ -1966,7 +1987,6 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
         [self.webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('sparkWebBrowser-operatingSystemVersion').innerHTML = '%@';", operatingSystemVersionString]];
         [self.webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('sparkWebBrowser-operatingSystemBuild').innerHTML = '%@';", operatingSystemBuildString]];
         
-        // Commented this out as of v3.0.5 (sunset update) so that Spark is fully functional on 10.13. This block used to check whether or not a user was on 10.13 and display a disclaimer accordingly.
         /*if([[NSProcessInfo processInfo] operatingSystemVersion].minorVersion == 13 && ![operatingSystemBuildString isEqual: @"17A264c"]) { // Check whether or not user is running macOS 10.13 or later
             // Beta operating system disclaimer
             [self.webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('sparkWebBrowser-operatingSystemBetaDisclaimer').innerHTML = '<p class=\"about-betadisclaimer\"><span class=\"about-betadisclaimer-warning\">WARNING: </span>%@</p>';", [NSString stringWithFormat:betaOperatingSystemDisclaimerText, operatingSystemBuildString]]];

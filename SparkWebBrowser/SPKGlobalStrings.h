@@ -11,6 +11,29 @@
 #ifndef SPKGlobalStrings_h
 #define SPKGlobalStrings_h
 
+
+/* General strings */
+
+NSString *appVersionString = nil; // Spark version number
+NSString *appBuildString = nil; // Spark build number
+NSString *operatingSystemVersionString = nil; // macOS version number
+NSString *operatingSystemBuildString = nil; // macOS build number
+NSString *macOSProductName = nil; // macOS product name
+NSString *customMacOSProductName = nil; // Edited macOS product name
+NSString *releaseChannel = nil; // Spark release channel
+NSString *editedVersionString = nil; // Edited macOS version string
+NSString *userAgent = nil; // Spark user agent, used when loading webpages
+NSString *clippedTitle = nil; // Title used within the titleStatus string
+NSString *lastSession = nil; // Value from NSUserDefaults of lastSession
+NSString *currentChromeVersion = @"59.0.3071.115"; // Used when setting user agent
+
+
+/* Appcast URL strings */
+
+NSString *stableChannelAppcastURL = @"https://insleep.tech/spark/appcast.xml"; // Stable channel appcast URL
+NSString *nightlyChannelAppcastURL = @"https://insleep.tech/spark/appcast-dev.xml"; // Nightly channel appcast URL
+
+
 /* Search engine query strings */
 
 NSString *googleSearchString = @"https://www.google.com/search?q=%@";
@@ -48,33 +71,17 @@ NSString *secureHTTPSPageDetailText = @"Your information (for example, passwords
 NSString *insecureHTTPSPageDetailText = @"You should not enter any sensitive information on this site (for example, passwords or credit cards)."; // Detail text shown when an insecure site is loaded
 
 
-/* Appcast URL strings */
+/* Strings used when downloading files */
 
-NSString *stableChannelAppcastURL = @"https://insleep.tech/spark/appcast.xml"; // Stable channel appcast URL
-NSString *nightlyChannelAppcastURL = @"https://insleep.tech/spark/appcast-dev.xml"; // Nightly channel appcast URL
-
-
-/* Mutable strings */
-
-NSString *appVersionString = nil; // Spark version number
-NSString *appBuildString = nil; // Spark build number
-NSString *operatingSystemVersionString = nil; // macOS version number
-NSString *operatingSystemBuildString = nil; // macOS build number
-NSString *macOSProductName = nil; // macOS product name
-NSString *customMacOSProductName = nil; // Edited macOS product name
-NSString *releaseChannel = nil; // Spark release channel
-NSString *editedVersionString = nil; // Edited macOS version string
-NSString *userAgent = nil; // Spark user agent, used when loading webpages
-NSString *clippedTitle = nil; // Title used within the titleStatus string
-NSString *suggestedFilename = nil; // Filename suggested when downloading files
-NSString *clippedFilename = nil; // Suggested filename with ellipsis suffix
-NSString *destinationFilename = nil; // Directory where downloaded files are stored
-NSString *homeDirectory = nil; // User home directory
+NSString *downloadFailedTitle = @"Error Downloading File"; // Title shown when an error occurs while downloading a file
 NSString *downloadLocation = nil; // Download location
 NSString *downloadLocationEdited = nil; // Download location, edited to remove special characters
 NSString *bytesReceivedFormatted = nil; // Bytes received (file download) (formatted)
 NSString *expectedLengthFormatted = nil; // Expected length of file being downloaded (formatted)
-NSString *lastSession = nil; // Value from NSUserDefaults of lastSession
+NSString *suggestedFilename = nil; // Filename suggested when downloading files
+NSString *clippedFilename = nil; // Suggested filename with ellipsis suffix
+NSString *destinationFilename = nil; // Directory where downloaded files are stored
+NSString *homeDirectory = nil; // User home directory
 
 
 /* Webpage loading-related strings */
@@ -100,23 +107,22 @@ NSString *betaOperatingSystemDisclaimerText = @"You are running a build of macOS
 /* Settings panel strings */
 
 // "General" panel
-NSString *setReleaseChannelTitle = @"Set Release Channel and Restart?";
-NSString *setReleaseChannelDetailText = @"";
-NSString *setReleaseChannelConfirmBtnText = @"Set Release Channel";
-NSString *setReleaseChannelRestartLaterBtnText = @"Restart Later";
+NSString *setReleaseChannelTitle = @"Set Release Channel and Restart?"; // Title shown when setting a release channel
+NSString *setReleaseChannelConfirmBtnText = @"Set Release Channel"; // Button text shown when setting a release channel
+NSString *setReleaseChannelRestartLaterBtnText = @"Restart Later"; // Button text shown when setting a release channel
+
+// "Search" panel
+NSString *customSearchEngineInvalidURLText = @"An error occurred: the text you entered is not a valid URL. Please enter a valid URL and try again."; // Text shown when the user enters an invalid URL in the custom search engine field
+NSString *customSearchEngineEmptyText = @"An error occurred: you did not enter any text. Please enter a valid URL and try again."; // Text shown when the user enters nothing in the custom search engine field
 
 // "Reset" panel
-NSString *resetAllSettingsTitle = @"Reset Settings and Restart?";
-NSString *resetAllSettingsDetailText = @"This will reset your startup page, release channel, search engine, bookmarks, and theme. A browser restart is required for this to take effect.";
-NSString *resetAllSettingsButtonText = @"Reset All Settings";
+NSString *resetAllSettingsTitle = @"Reset Settings and Restart?"; // Title shown when resetting all settings
+NSString *resetAllSettingsDetailText = @"This will reset your startup page, release channel, search engine, bookmarks, and theme. A browser restart is required for this to take effect."; // Text shown when resetting all settings
+NSString *resetAllSettingsButtonText = @"Reset All Settings"; // Button text shown when resetting all settings
 
 // Misc.
+NSString *genericErrorTitle = @"Error";
 NSString *cancelButtonText = @"Cancel";
-
-
-/* Miscellaneous strings */
-
-NSString *currentChromeVersion = @"59.0.3071.115"; // Used when setting user agent
 
 
 #endif /* SPKGlobalStrings_h */
