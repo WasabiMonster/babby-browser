@@ -768,7 +768,6 @@ Spark is made possible by the WebKit open source project and other open source s
                                                         <menuItem title="Bing" image="bing-search-engine-icon" id="iHg-JP-TzF"/>
                                                         <menuItem title="Yahoo!" image="yahoo-search-engine-icon" id="RpJ-j3-k0A"/>
                                                         <menuItem title="DuckDuckGo" image="duckduckgo-search-engine-icon" id="nq3-GM-uav"/>
-                                                        <menuItem title="AOL" image="aol-search-engine-icon" id="zAg-Ww-56y"/>
                                                         <menuItem isSeparatorItem="YES" id="toF-XD-kdO"/>
                                                         <menuItem title="Custom" id="jS2-St-NcO"/>
                                                     </items>
@@ -1745,7 +1744,6 @@ DQ
         <image name="NSRefreshTemplate" width="11" height="15"/>
         <image name="NSStopProgressFreestandingTemplate" width="14" height="14"/>
         <image name="SparkIcon256" width="61.439998626708984" height="61.439998626708984"/>
-        <image name="aol-search-engine-icon" width="16" height="16"/>
         <image name="bing-search-engine-icon" width="16" height="16"/>
         <image name="duckduckgo-search-engine-icon" width="16" height="16"/>
         <image name="google-search-engine-icon" width="16" height="16"/>

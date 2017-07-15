@@ -53,7 +53,6 @@ extern NSString *googleSearchString;
 extern NSString *bingSearchString;
 extern NSString *yahooSearchString;
 extern NSString *duckDuckGoSearchString;
-extern NSString *aolSearchString;
 extern NSString *customSearchString;
 
 /* Search engine default homepages */
@@ -61,7 +60,6 @@ extern NSString *googleDefaultURL;
 extern NSString *bingDefaultURL;
 extern NSString *yahooDefaultURL;
 extern NSString *duckDuckGoDefaultURL;
-extern NSString *aolDefaultURL;
 
 /* Strings for "Help" menu bar item */
 extern NSString *appReportIssueURL;
@@ -634,7 +632,6 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
 }
 
 - (IBAction)reportIssueAboutWindow:(id)sender {
-    
     [self.aboutWindow close];
     [[self.webView mainFrame] loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:appReportIssueURL]]];
     self.addressBar.stringValue = appReportIssueURL;
@@ -677,7 +674,6 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
 }
 
 - (IBAction)savePage:(id)sender {
-    
     downloadOverride = YES;
     NSLog(@"Downloads overridden. Starting download...");
     [[self.webView mainFrame] reload];
@@ -717,7 +713,6 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
 }
 
 - (IBAction)useAboutPage:(id)sender {
-    
     if(self.useAboutPageBtn.state == NSOnState) {
         NSLog(@"Now using spark://about webpage.");
         
@@ -730,7 +725,6 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
 }
 
 - (IBAction)openAboutWindow:(id)sender {
-    
     if([defaults boolForKey:@"useSparkAboutPage"] == YES) {
         
         NSLog(@"Loading spark-about.html...");
@@ -754,7 +748,6 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
 }
 
 - (IBAction)addBookmarkAddressBar:(id)sender {
-    
     if([defaults objectForKey:@"bookmarkViewOpen"] == nil) {
         self.bookmarkAddedName.stringValue = [NSString stringWithFormat:@"%@", self.webView.mainFrameTitle];
         self.bookmarkAddedView.hidden = NO;
@@ -1142,20 +1135,6 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
             [[self.webView mainFrame] loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", editedURLString]]]];
             self.addressBar.stringValue = [NSString stringWithFormat:@"%@", editedURLString];
             
-        } else if([[defaults objectForKey:@"currentSearchEngine"] isEqual: @"AOL"]) {
-            
-            // AOL search initiated
-            
-            NSLog(@"Search engine found: AOL");
-            
-            searchString = [searchString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-            
-            urlString = [NSString stringWithFormat:aolSearchString, searchString];
-            editedURLString = [urlString stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
-            
-            [[self.webView mainFrame] loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", editedURLString]]]];
-            self.addressBar.stringValue = [NSString stringWithFormat:@"%@", editedURLString];
-            
         } else if([[defaults objectForKey:@"currentSearchEngine"] isEqual: @"Custom"]) {
             
             // Search with custom engine initiated
@@ -1334,10 +1313,6 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
         // Set homepage to DuckDuckGo
         [self setHomepageWithString:duckDuckGoDefaultURL];
         
-    } else if([[defaults objectForKey:@"currentSearchEngine"] isEqual: @"AOL"]) {
-        
-        // Set homepage to AOL
-        [self setHomepageWithString:aolDefaultURL];
     }
 }
 

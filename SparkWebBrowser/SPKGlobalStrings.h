@@ -40,7 +40,6 @@ NSString *googleSearchString = @"https://www.google.com/search?q=%@";
 NSString *bingSearchString = @"https://www.bing.com/search?q=%@";
 NSString *yahooSearchString = @"https://search.yahoo.com/search?p=%@";
 NSString *duckDuckGoSearchString = @"https://www.duckduckgo.com/%@";
-NSString *aolSearchString = @"https://search.aol.com/aol/search?q=%@";
 NSString *customSearchString = nil;
 
 
@@ -50,7 +49,6 @@ NSString *googleDefaultURL = @"https://www.google.com/";
 NSString *bingDefaultURL = @"https://www.bing.com/";
 NSString *yahooDefaultURL = @"https://www.yahoo.com/";
 NSString *duckDuckGoDefaultURL = @"https://www.duckduckgo.com/";
-NSString *aolDefaultURL = @"https://www.aol.com/";
 
 
 /* Strings for "Help" menu bar item */
