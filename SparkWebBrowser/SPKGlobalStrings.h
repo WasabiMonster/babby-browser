@@ -25,7 +25,7 @@ NSString *editedVersionString = nil; // Edited macOS version string
 NSString *userAgent = nil; // Spark user agent, used when loading webpages
 NSString *clippedTitle = nil; // Title used within the titleStatus string
 NSString *lastSession = nil; // Value from NSUserDefaults of lastSession
-NSString *currentChromeVersion = @"60.0.3112.78"; // Used when setting user agent
+NSString *currentChromeVersion = @"60.0.3112.90"; // Used when setting user agent
 
 
 /* Appcast URL strings */
