@@ -18,8 +18,9 @@
 - (NSColor *)colorForKey:(NSString *)aKey {
     NSColor *theColor = nil;
     NSData *theData = [self dataForKey:aKey];
-    if (theData != nil)
+    if (theData != nil) {
         theColor = (NSColor *)[NSUnarchiver unarchiveObjectWithData:theData];
+    }
     return theColor;
 }
 

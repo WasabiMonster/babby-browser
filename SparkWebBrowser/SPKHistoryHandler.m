@@ -20,7 +20,7 @@
     
     if([defaults objectForKey:@"storedHistoryArray"] == nil) {
         
-        NSLog(@"StoredHistoryArray: nil");
+        NSLog(@"SPKHistoryHandler: StoredHistoryArray = nil");
         
         currentHistoryArray = [NSMutableArray array];
         currentHistoryTitlesArray = [NSMutableArray array];
@@ -52,7 +52,7 @@
     SPKHistoryTable *historyTable = [[SPKHistoryTable alloc] init];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    NSLog(@"Clearing history...");
+    NSLog(@"SPKHistoryHandler: Clearing history...");
     
     [defaults setObject:nil forKey:@"storedHistoryArray"]; // Clear URLs array
     [defaults setObject:nil forKey:@"storedHistoryTitlesArray"]; // Clear titles array
@@ -60,7 +60,7 @@
     [historyTable resetTableView];
     [historyTable refreshHistoryContent];
     
-    NSLog(@"History cleared.");
+    NSLog(@"SPKHistoryHandler: History cleared.");
     
     // Display a checkmark after history is cleared
     appDelegate.historyClearedIcon.hidden = NO;
@@ -82,7 +82,7 @@
     
     if([defaults objectForKey:@"storedHistoryArray"] == nil) {
         
-        NSLog(@"StoredHistoryArray: nil");
+        NSLog(@"SPKHistoryHandler: StoredHistoryArray = nil");
         
         currentHistoryArray = [NSMutableArray array];
         
@@ -101,7 +101,7 @@
     
     if([defaults objectForKey:@"storedHistoryTitlesArray"] == nil) {
         
-        NSLog(@"StoredHistoryTitlesArray: nil");
+        NSLog(@"SPKHistoryHandler: StoredHistoryTitlesArray = nil");
         
         currentHistoryTitlesArray = [NSMutableArray array];
         

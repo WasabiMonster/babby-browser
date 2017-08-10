@@ -42,7 +42,7 @@ NSArray *reversedHistoryTitlesArray = nil;
     self.historyURLArray = [historyHandler getHistoryItems];
     [self.historyTableView reloadData];
     
-    NSLog(@"History refreshed.");
+    NSLog(@"SPKHistoryTable: History refreshed.");
 }
 
 - (void)resetTableView {
