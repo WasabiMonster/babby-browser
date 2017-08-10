@@ -1962,6 +1962,8 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
         [self.webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('sparkWebBrowser-operatingSystemVersion').innerHTML = '%@';", operatingSystemVersionString]];
         [self.webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('sparkWebBrowser-operatingSystemBuild').innerHTML = '%@';", operatingSystemBuildString]];
         
+        [self.webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('sparkWebBrowser-invalidURLRequested').innerHTML = '%@';", searchString]];
+        
         /*if([[NSProcessInfo processInfo] operatingSystemVersion].minorVersion == 13 && ![operatingSystemBuildString isEqual: @"17A264c"]) { // Check whether or not user is running macOS 10.13 or later
             // Beta operating system disclaimer
             [self.webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('sparkWebBrowser-operatingSystemBetaDisclaimer').innerHTML = '<p class=\"about-betadisclaimer\"><span class=\"about-betadisclaimer-warning\">WARNING: </span>%@</p>';", [NSString stringWithFormat:betaOperatingSystemDisclaimerText, operatingSystemBuildString]]];
