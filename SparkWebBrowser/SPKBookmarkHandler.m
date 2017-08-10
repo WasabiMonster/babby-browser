@@ -23,10 +23,10 @@
     
     if([defaults objectForKey:@"storedBookmarksArray"] == nil) {
         
-        NSLog(@"StoredBookmarksArray: nil");
+        NSLog(@"SPKBookmarkHandler: StoredBookmarksArray = nil");
         
         if(appDelegate.faviconImage.image == [NSImage imageNamed:@"favicon.ico"]) { // Check whether or not the current page is a spark: page
-            NSLog(@"Spark verified page detected - setting bookmarkIconData to avoid image scaling issues");
+            NSLog(@"SPKBookmarkHandler: Spark verified page detected - setting bookmarkIconData to avoid image scaling issues");
             bookmarkIconData = [[NSImage imageNamed:@"SparkFavicon"] TIFFRepresentation];
         } else {
             bookmarkIconData = [bookmarkIcon TIFFRepresentation];
@@ -54,10 +54,10 @@
         
     } else {
         
-        NSLog(@"StoredBookmarksArray exists");
+        NSLog(@"SPKBookmarkHandler: StoredBookmarksArray exists");
         
         if(appDelegate.faviconImage.image == [NSImage imageNamed:@"favicon.ico"]) { // Check whether or not the current page is a spark: page
-            NSLog(@"Spark verified page detected - setting bookmarkIconData to avoid image scaling issues");
+            NSLog(@"SPKBookmarkHandler: Spark verified page detected - setting bookmarkIconData to avoid image scaling issues");
             bookmarkIconData = [[NSImage imageNamed:@"SparkFavicon"] TIFFRepresentation];
         } else {
             bookmarkIconData = [bookmarkIcon TIFFRepresentation];
@@ -91,7 +91,7 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    NSLog(@"Clearing bookmarks...");
+    NSLog(@"SPKBookmarkHandler: Clearing bookmarks...");
     
     [defaults setObject:nil forKey:@"storedBookmarksArray"];
     [defaults setObject:nil forKey:@"storedBookmarkTitlesArray"];
@@ -103,7 +103,7 @@
     
     [appDelegate.menuBarBookmarks addItem:[NSMenuItem separatorItem]];
     
-    NSLog(@"Bookmarks cleared.");
+    NSLog(@"SPKBookmarkHandler: Bookmarks cleared.");
     
     // Display a checkmark after bookmarks are cleared
     appDelegate.bookmarksClearedIcon.hidden = NO;
