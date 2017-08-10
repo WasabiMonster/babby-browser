@@ -18,13 +18,11 @@
 
 /**
  * Refresh history content and update table view.
- *
  */
 - (void)refreshHistoryContent;
 
 /**
  * Remove all data and reload table view.
- *
  */
 - (void)resetTableView;
 

@@ -10,9 +10,31 @@
 
 @interface SPKHistoryHandler : NSObject
 
-- (void)addHistoryItem:(NSString *)historyURL withHistoryTitle:(NSString *)historyTitle;
+/**
+ * Add an item to the history array.
+ *
+ * @param historyURLString URL to add to history array
+ * @param historyTitle Title of URL to add to history array
+ */
+- (void)addHistoryItem:(NSString *)historyURLString withHistoryTitle:(NSString *)historyTitle;
+
+/**
+ * Clear history and reload history table view.
+ */
 - (void)clearHistory;
+
+/**
+ * Get an array of current history items.
+ *
+ * @return A mutable array of all current history items
+ */
 - (NSMutableArray *)getHistoryItems;
+
+/**
+ * Get an array of current history title items.
+ *
+ * @return A mutable array of all current history title items
+ */
 - (NSMutableArray *)getHistoryTitleItems;
 
 @end

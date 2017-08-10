@@ -10,8 +10,23 @@
 
 @interface SPKBookmarkHandler : NSObject
 
+/**
+ * Add an item to the bookmarks array.
+ *
+ * @param bookmarkURL URL to add to bookmarks array
+ * @param bookmarkTitle Title of URL to add to bookmarks array
+ * @param bookmarkIcon Favicon of URL to add to bookmarks array
+ */
 - (void)addBookmark:(NSString *)bookmarkURL withBookmarkTitle:(NSString *)bookmarkTitle withBookmarkIcon:(NSImage *)bookmarkIcon;
+
+/**
+ * Clear bookmarks and repopulate "Bookmarks" menu.
+ */
 - (void)clearBookmarks;
+
+/**
+ * Do nothing. This method is in AppDelegate.m.
+ */
 - (void)openBookmark:(id)sender;
 
 @end
