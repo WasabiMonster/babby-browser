@@ -953,7 +953,7 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
         [defaults setBool:YES forKey:@"setHomepageEngine"];
         self.homepageTextField.enabled = NO;
         self.setHomepageBtn.enabled = NO;
-        [self setHomepageBasedOnSearchEngine:self];
+        [self setHomepageBasedOnSearchEngine];
         
     } else if([self.homepageBasedOnSearchEngineBtn state] == NSOffState) {
         // Off
@@ -1028,7 +1028,7 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
         
         NSLog(@"Setting homepage based on search engine");
         
-        [self setHomepageBasedOnSearchEngine:self];
+        [self setHomepageBasedOnSearchEngine];
     }
 }
 
@@ -1300,7 +1300,7 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
     }
 }
 
-- (void)setHomepageBasedOnSearchEngine:(id)sender {
+- (void)setHomepageBasedOnSearchEngine {
     if([[defaults objectForKey:@"currentSearchEngine"] isEqual: @"Google"]) {
         
         // Set homepage to Google

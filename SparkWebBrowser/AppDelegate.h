@@ -81,34 +81,179 @@
 @property (nonatomic, assign) long bytesReceived;
 
 #pragma mark - IBActions
+
+/**
+ * Open a new tab.
+ * @param sender
+ */
 - (IBAction)newTab:(id)sender;
+
+/**
+ * Set the user's homepage.
+ * @param sender
+ */
 - (IBAction)setHomepage:(id)sender;
+
+/**
+ * Set the user's download location.
+ * @param sender
+ */
 - (IBAction)setDownloadLocation:(id)sender;
+
+/**
+ * Set the user's release channel.
+ * @param sender
+ */
 - (IBAction)setReleaseChannel:(id)sender;
+
+/**
+ * Start loading a webpage.
+ * @param sender
+ */
 - (IBAction)initWebpageLoad:(id)sender;
+
+/**
+ * Set the user's search engine.
+ * @param sender
+ */
 - (IBAction)setSearchEngine:(id)sender;
+
+/**
+ * Open the release notes URL.
+ * @param sender
+ */
 - (IBAction)viewReleaseNotes:(id)sender;
+
+/**
+ * Open the feature roadmap URL.
+ * @param sender
+ */
 - (IBAction)viewFeatureRoadmap:(id)sender;
+
+/**
+ * Set homepage based on the user's search engine.
+ * @param sender
+ */
 - (IBAction)startSettingHomepageBasedOnSearchEngine:(id)sender;
+
+/**
+ * Set the user's theme.
+ * @param sender
+ */
 - (IBAction)setTopBarColor:(id)sender;
+
+/**
+ * Set a custom color as the user's theme.
+ * @param sender
+ */
 - (IBAction)setCustomColor:(id)sender;
+
+/**
+ * Close the About window and open a link to report an issue.
+ * @param sender
+ */
 - (IBAction)reportIssueAboutWindow:(id)sender;
+
+/**
+ * Open a link to report an issue.
+ * @param sender
+ */
 - (IBAction)reportIssue:(id)sender;
+
+/**
+ * Close the Downloads view.
+ * @param sender
+ */
 - (IBAction)closeDownloadingView:(id)sender;
+
+/**
+ * Save a custom search engine.
+ * @param sender
+ */
 - (IBAction)saveCustomSearchEngine:(id)sender;
+
+/**
+ * Save a page and store it to a location.
+ * @param sender
+ */
 - (IBAction)savePage:(id)sender;
+
+/**
+ * Save an option based on the currently selected radio button.
+ * @param sender
+ */
 - (IBAction)lastSessionRadioBtnSelected:(id)sender;
+
+/**
+ * Save an option based on the currently selected radio button.
+ * @param sender
+ */
 - (IBAction)homepageRadioBtnSelected:(id)sender;
+
+/**
+ * Set the user's release channel and relaunch Spark.
+ * @param sender
+ */
 - (IBAction)setReleaseChannelBtnClicked:(id)sender;
+
+/**
+ * Use the About page instead of the About window.
+ * @param sender
+ */
 - (IBAction)useAboutPage:(id)sender;
+
+/**
+ * Open the About window.
+ * @param sender
+ */
 - (IBAction)openAboutWindow:(id)sender;
+
+/**
+ * Add a bookmark to the bookmarks array.
+ * @param sender
+ */
 - (IBAction)addBookmark:(id)sender;
+
+/**
+ * Determine whether or not the address bar bookmarks viewer is open.
+ * @param sender
+ */
 - (IBAction)addBookmarkAddressBar:(id)sender;
+
+/**
+ * Clear the bookmarks array.
+ * @param sender
+ */
 - (IBAction)clearBookmarks:(id)sender;
+
+/**
+ * Clear the history array.
+ * @param sender
+ */
 - (IBAction)clearHistory:(id)sender;
+
+/**
+ * Load the user's homepage.
+ * @param sender
+ */
 - (IBAction)loadHomepage:(id)sender;
+
+/**
+ * Show the Home button on the address bar.
+ * @param sender
+ */
 - (IBAction)startShowingHomeBtn:(id)sender;
+
+/**
+ * Create a bookmark and close the "Bookmark Added" window.
+ * @param sender
+ */
 - (IBAction)bookmarkAddedDoneBtnPressed:(id)sender;
+
+/**
+ * Cancel the creation of a bookmark.
+ * @param sender
+ */
 - (IBAction)cancelBookmarkCreation:(id)sender;
 
 #pragma mark - Various methods
@@ -116,7 +261,7 @@
 - (void)webView:(WebView *)sender didReceiveTitle:(NSString *)title forFrame:(WebFrame *)frame;
 - (void)setHomepageWithString:(NSString *)homepageToSet;
 - (void)settingsMenuClicked:(id)sender;
-- (void)setHomepageBasedOnSearchEngine:(id)sender;
+- (void)setHomepageBasedOnSearchEngine;
 - (void)checkExperimentalConfig;
 - (void)handleFilePrefix;
 
