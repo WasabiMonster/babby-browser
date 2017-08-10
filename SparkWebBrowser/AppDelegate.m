@@ -431,6 +431,14 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
     self.configWindow.titlebarAppearsTransparent = YES;
     self.historyWindow.titlebarAppearsTransparent = YES;
     
+    self.window.movableByWindowBackground = YES;
+    self.aboutWindow.movableByWindowBackground = YES;
+    self.errorWindow.movableByWindowBackground = YES;
+    self.popupWindow.movableByWindowBackground = YES;
+    self.settingsWindow.movableByWindowBackground = YES;
+    self.configWindow.movableByWindowBackground = YES;
+    self.historyWindow.movableByWindowBackground = YES;
+    
     currentBookmarkTitlesArray = [defaults objectForKey:@"storedBookmarkTitlesArray"];
     currentBookmarkIconsArray = [defaults objectForKey:@"storedBookmarkIconsArray"];
     
