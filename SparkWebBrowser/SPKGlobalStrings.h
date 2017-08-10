@@ -14,24 +14,50 @@
 
 /* General strings */
 
-NSString *appVersionString = nil; // Spark version number
-NSString *appBuildString = nil; // Spark build number
-NSString *operatingSystemVersionString = nil; // macOS version number
-NSString *operatingSystemBuildString = nil; // macOS build number
-NSString *macOSProductName = nil; // macOS product name
-NSString *customMacOSProductName = nil; // Edited macOS product name
-NSString *releaseChannel = nil; // Spark release channel
-NSString *editedVersionString = nil; // Edited macOS version string
-NSString *userAgent = nil; // Spark user agent, used when loading webpages
-NSString *clippedTitle = nil; // Title used within the titleStatus string
-NSString *lastSession = nil; // Value from NSUserDefaults of lastSession
-NSString *currentChromeVersion = @"60.0.3112.90"; // Used when setting user agent
+/// Spark version number
+NSString *appVersionString = nil;
+
+/// Spark build number
+NSString *appBuildString = nil;
+
+/// macOS version number
+NSString *operatingSystemVersionString = nil;
+
+/// macOS build number
+NSString *operatingSystemBuildString = nil;
+
+/// macOS product name
+NSString *macOSProductName = nil;
+
+/// Edited macOS product name
+NSString *customMacOSProductName = nil;
+
+/// Spark release channel
+NSString *releaseChannel = nil;
+
+/// Edited macOS version string
+NSString *editedVersionString = nil;
+
+/// Spark user agent, used when loading webpages
+NSString *userAgent = nil;
+
+/// Title used within the titleStatus string
+NSString *clippedTitle = nil;
+
+/// Value from NSUserDefaults of lastSession
+NSString *lastSession = nil;
+
+/// Used when setting user agent
+NSString *currentChromeVersion = @"60.0.3112.90";
 
 
 /* Appcast URL strings */
 
-NSString *stableChannelAppcastURL = @"https://insleep.tech/spark/appcast.xml"; // Stable channel appcast URL
-NSString *nightlyChannelAppcastURL = @"https://insleep.tech/spark/appcast-dev.xml"; // Nightly channel appcast URL
+/// Stable channel appcast URL
+NSString *stableChannelAppcastURL = @"https://insleep.tech/spark/appcast.xml";
+
+/// Nightly channel appcast URL
+NSString *nightlyChannelAppcastURL = @"https://insleep.tech/spark/appcast-dev.xml";
 
 
 /* Search engine query strings */
@@ -61,65 +87,138 @@ NSString *appRoadmapURL = @"https://trello.com/b/TPd5oizl/spark-roadmap/";
 
 /* Strings related to page indicator */
 
-NSString *secureSparkPageText = @"You are viewing a secure Spark page."; // Text shown when a secure Spark page is loaded
-NSString *secureSparkPageDetailText = @"Your information is private when it is sent to secure Spark pages."; // Detail text shown when a secure Spark page is loaded
-NSString *secureHTTPSPageText = @"Your connection to this site is secure."; // Text shown when a secure site is loaded
-NSString *insecureHTTPSPageText = @"Your connection to this site is not secure."; // Text shown when an insecure site is loaded
-NSString *secureHTTPSPageDetailText = @"Your information (for example, passwords or credit card numbers) is private when it is sent to this site."; // Detail text shown when a secure site is loaded
-NSString *insecureHTTPSPageDetailText = @"You should not enter any sensitive information on this site (for example, passwords or credit cards)."; // Detail text shown when an insecure site is loaded
+/// Text shown when a secure Spark page is loaded
+NSString *secureSparkPageText = @"You are viewing a secure Spark page.";
+
+/// Detail text shown when a secure Spark page is loaded
+NSString *secureSparkPageDetailText = @"Your information is private when it is sent to secure Spark pages.";
+
+/// Text shown when a secure site is loaded
+NSString *secureHTTPSPageText = @"Your connection to this site is secure.";
+
+/// Text shown when an insecure site is loaded
+NSString *insecureHTTPSPageText = @"Your connection to this site is not secure.";
+
+/// Detail text shown when a secure site is loaded
+NSString *secureHTTPSPageDetailText = @"Your information (for example, passwords or credit card numbers) is private when it is sent to this site.";
+
+/// Detail text shown when an insecure site is loaded
+NSString *insecureHTTPSPageDetailText = @"You should not enter any sensitive information on this site (for example, passwords or credit cards).";
 
 
 /* Strings used when downloading files */
 
-NSString *downloadFailedTitle = @"Error Downloading File"; // Title shown when an error occurs while downloading a file
-NSString *downloadLocation = nil; // Download location
-NSString *downloadLocationEdited = nil; // Download location, edited to remove special characters
-NSString *bytesReceivedFormatted = nil; // Bytes received (file download) (formatted)
-NSString *expectedLengthFormatted = nil; // Expected length of file being downloaded (formatted)
-NSString *suggestedFilename = nil; // Filename suggested when downloading files
-NSString *clippedFilename = nil; // Suggested filename with ellipsis suffix
-NSString *destinationFilename = nil; // Directory where downloaded files are stored
-NSString *homeDirectory = nil; // User home directory
+/// Title shown when an error occurs while downloading a file
+NSString *downloadFailedTitle = @"Error Downloading File";
+
+/// Location in which to download a file
+NSString *downloadLocation = nil;
+
+/// Download location, edited to remove special characters
+NSString *downloadLocationEdited = nil;
+
+/// Bytes received (file download) (formatted)
+NSString *bytesReceivedFormatted = nil;
+
+/// Expected length of file being downloaded (formatted)
+NSString *expectedLengthFormatted = nil;
+
+/// Filename suggested when downloading files
+NSString *suggestedFilename = nil;
+
+/// Suggested filename with ellipsis suffix
+NSString *clippedFilename = nil;
+
+/// Directory where downloaded files are stored
+NSString *destinationFilename = nil;
+
+/// User home directory
+NSString *homeDirectory = nil;
 
 
 /* Webpage loading-related strings */
 
-NSString *searchString = nil; // String used when initiating a search query
-NSString *homepageString = nil; // Current homepage chosen
-NSString *urlString = nil; // Initial string to load a webpage from
-NSString *editedURLString = nil; // Edited string to load a webpage from
-NSString *capitalizedReleaseChannel = nil; // Spark release channel, including capital letters
-NSString *uncapitalizedReleaseChannel = nil; // Spark release channel, not including capital letters
-NSString *searchEngineChosen = nil; // Current search engine chosen
-NSString *colorChosen = nil; // Current theme color stored in NSUserDefaults
-NSString *urlToString = nil; // NSURL converted to a NSString, used when handling spark:// URL events
-NSString *websiteURL = nil; // Current website URL
-NSString *faviconURLString = nil; // URL for the service that retrieves favicons
+/// String used when initiating a search query
+NSString *searchString = nil;
+
+/// Current homepage chosen
+NSString *homepageString = nil;
+
+/// Initial string to load a webpage from
+NSString *urlString = nil;
+
+/// Edited string to load a webpage from
+NSString *editedURLString = nil;
+
+/// Spark release channel, including capital letters
+NSString *capitalizedReleaseChannel = nil;
+
+/// Spark release channel, not including capital letters
+NSString *uncapitalizedReleaseChannel = nil;
+
+/// Current search engine chosen
+NSString *searchEngineChosen = nil;
+
+/// Current theme color stored in NSUserDefaults
+NSString *colorChosen = nil;
+
+/// NSURL converted to a NSString, used when handling spark:// URL events
+NSString *urlToString = nil;
+
+/// Current website URL
+NSString *websiteURL = nil;
+
+/// URL for the service that retrieves favicons
+NSString *faviconURLString = nil;
 
 
 /* Strings shown on spark:// pages */
 
-NSString *betaOperatingSystemDisclaimerText = @"You are running a build of macOS 10.13 High Sierra that is not officially supported by Spark (%@). Please be aware that Spark may function improperly."; // Disclaimer shown when user is running a non-supported beta build of macOS 10.13
+/// Disclaimer shown when user is running a non-supported beta build of macOS 10.13
+NSString *betaOperatingSystemDisclaimerText = @"You are running a build of macOS 10.13 High Sierra that is not officially supported by Spark (%@). Please be aware that Spark may function improperly.";
 
 
 /* Settings panel strings */
 
 // "General" panel
-NSString *setReleaseChannelTitle = @"Set Release Channel and Restart?"; // Title shown when setting a release channel
-NSString *setReleaseChannelConfirmBtnText = @"Set Release Channel"; // Button text shown when setting a release channel
-NSString *setReleaseChannelRestartLaterBtnText = @"Restart Later"; // Button text shown when setting a release channel
+
+/// Title shown when setting a release channel
+NSString *setReleaseChannelTitle = @"Set Release Channel and Restart?";
+
+/// Button text shown when setting a release channel
+NSString *setReleaseChannelConfirmBtnText = @"Set Release Channel";
+
+/// Button text shown when setting a release channel
+NSString *setReleaseChannelRestartLaterBtnText = @"Restart Later";
+
 
 // "Search" panel
-NSString *customSearchEngineInvalidURLText = @"An error occurred: the text you entered is not a valid URL. Please enter a valid URL and try again."; // Text shown when the user enters an invalid URL in the custom search engine field
-NSString *customSearchEngineEmptyText = @"An error occurred: you did not enter any text. Please enter a valid URL and try again."; // Text shown when the user enters nothing in the custom search engine field
+
+/// Text shown when the user enters an invalid URL in the custom search engine field
+NSString *customSearchEngineInvalidURLText = @"An error occurred: the text you entered is not a valid URL. Please enter a valid URL and try again.";
+
+/// Text shown when the user enters nothing in the custom search engine field
+NSString *customSearchEngineEmptyText = @"An error occurred: you did not enter any text. Please enter a valid URL and try again.";
+
 
 // "Reset" panel
-NSString *resetAllSettingsTitle = @"Reset Settings and Restart?"; // Title shown when resetting all settings
-NSString *resetAllSettingsDetailText = @"This will reset your startup page, release channel, search engine, bookmarks, and theme. A browser restart is required for this to take effect."; // Text shown when resetting all settings
-NSString *resetAllSettingsButtonText = @"Reset All Settings"; // Button text shown when resetting all settings
+
+/// Title shown when resetting all settings
+NSString *resetAllSettingsTitle = @"Reset Settings and Restart?";
+
+/// Text shown when resetting all settings
+NSString *resetAllSettingsDetailText = @"This will reset your startup page, release channel, search engine, bookmarks, and theme. A browser restart is required for this to take effect.";
+
+/// Button text shown when resetting all settings
+NSString *resetAllSettingsButtonText = @"Reset All Settings";
+
 
 // Misc.
+
+/// Generic error title shown throughout the browser
 NSString *genericErrorTitle = @"Error";
+
+/// Cancel text shown throughout the browser
 NSString *cancelButtonText = @"Cancel";
 
 
