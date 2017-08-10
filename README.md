@@ -36,7 +36,7 @@ Open `Spark.xcodeproj`, located in the `SparkWebBrowser` directory of Spark for 
 
 Make any necessary changes and compile Spark within Xcode.
 
-The compiled version of Spark will be put in the `build/` subdirectory, along with other required files.
+To export a Spark build, use the Xcode Organizer window, available through `Window > Organizer`. Click `Export...`, then `Export as a macOS App`.
 
 ## Nightly Builds
 
