@@ -259,10 +259,32 @@
 #pragma mark - Various methods
 - (void)webView:(WebView *)sender didStartProvisionalLoadForFrame:(WebFrame *)frame;
 - (void)webView:(WebView *)sender didReceiveTitle:(NSString *)title forFrame:(WebFrame *)frame;
+
+/**
+ * Set the user's homepage with a string.
+ * @param Homepage to set
+ */
 - (void)setHomepageWithString:(NSString *)homepageToSet;
+
+/**
+ * Show the settings popup menu when the button is clicked.
+ * @param sender
+ */
 - (void)settingsMenuClicked:(id)sender;
+
+/**
+ * Set the user's homepage based on their search engine.
+ */
 - (void)setHomepageBasedOnSearchEngine;
+
+/**
+ * Check experimental configuration settings.
+ */
 - (void)checkExperimentalConfig;
+
+/**
+ * Handle webpage title when it is a local file.
+ */
 - (void)handleFilePrefix;
 
 @end
