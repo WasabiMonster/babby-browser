@@ -10,7 +10,17 @@
 
 @interface NSUserDefaults(colorSupport)
 
+/**
+ * Set a color as the value of a user default.
+ * @param Color
+ * @param User default key
+ */
 - (void)setColor:(NSColor *)aColor forKey:(NSString *)aKey;
+
+/**
+ * Retrieve the color stored as a user default.
+ * @param User default key
+ */
 - (NSColor *)colorForKey:(NSString *)aKey;
 
 @end
