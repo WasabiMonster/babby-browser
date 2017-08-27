@@ -76,6 +76,9 @@
 @property (assign, nonatomic) IBOutlet NSButton *showHomeBtn;
 @property (assign, nonatomic) IBOutlet NSView *bookmarkAddedView;
 @property (assign, nonatomic) IBOutlet NSTextField *bookmarkAddedName;
+@property (assign, nonatomic) IBOutlet NSView *loadStatusIndicator;
+@property (assign, nonatomic) IBOutlet NSTextField *loadStatusIndicatorText;
+@property (assign, nonatomic) IBOutlet NSButton *enableLoadStatusIndicatorBtn;
 
 #pragma mark - Miscellaneous properties
 @property (nonatomic, assign) long bytesReceived;
@@ -207,6 +210,12 @@
  * @param sender
  */
 - (IBAction)openAboutWindow:(id)sender;
+
+/**
+ * Enable the page load status indicator.
+ * @param sender
+ */
+- (IBAction)enableLoadStatusIndicator:(id)sender;
 
 /**
  * Add a bookmark to the bookmarks array.

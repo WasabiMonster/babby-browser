@@ -35,6 +35,7 @@
                 <outlet property="downloadLocTextField" destination="17K-HH-EGB" id="v3l-W0-emt"/>
                 <outlet property="downloadProgressIndicator" destination="DMz-UI-kVs" id="8DZ-OU-lg9"/>
                 <outlet property="downloadingViewBg" destination="ZMp-cC-hd9" id="WyY-Mo-Ke2"/>
+                <outlet property="enableLoadStatusIndicatorBtn" destination="RpU-iM-YnY" id="rAk-zc-KOp"/>
                 <outlet property="errorPanelText" destination="gH6-oi-BWq" id="e5w-Zj-BC5"/>
                 <outlet property="errorPanelTitle" destination="4M2-zn-hbU" id="J2s-1b-st5"/>
                 <outlet property="errorWindow" destination="uuQ-xY-3aS" id="gyF-Ts-abR"/>
@@ -50,6 +51,8 @@
                 <outlet property="homepageRadioBtn" destination="NUL-1g-aHX" id="akT-DQ-8cG"/>
                 <outlet property="homepageTextField" destination="wPk-qF-HnV" id="sfR-SW-cWa"/>
                 <outlet property="lastSessionRadioBtn" destination="gmm-t7-PDm" id="C8c-zQ-6w1"/>
+                <outlet property="loadStatusIndicator" destination="CVx-Za-LLm" id="Cyg-aP-tge"/>
+                <outlet property="loadStatusIndicatorText" destination="GOI-gg-OmB" id="fTJ-Nm-BOX"/>
                 <outlet property="loadingIndicator" destination="1qB-mY-4UE" id="EYD-he-pSG"/>
                 <outlet property="menuBarBookmarks" destination="drg-vE-MEd" id="I0Z-VL-A66"/>
                 <outlet property="ntBtn" destination="pmy-Gn-uac" id="eJG-ga-1rU"/>
@@ -1013,18 +1016,18 @@ Spark is made possible by the WebKit open source project and other open source s
         <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="qp2-Mq-gTe" userLabel="Config Window" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="577" y="497" width="525" height="173"/>
+            <rect key="contentRect" x="577" y="497" width="525" height="193"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
             <view key="contentView" misplaced="YES" id="ElD-p4-mUE">
-                <rect key="frame" x="0.0" y="0.0" width="525" height="173"/>
+                <rect key="frame" x="0.0" y="0.0" width="525" height="193"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <box verticalHuggingPriority="750" misplaced="YES" boxType="separator" id="Qtq-Mj-oqy">
-                        <rect key="frame" x="20" y="49" width="485" height="5"/>
+                        <rect key="frame" x="20" y="69" width="485" height="5"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </box>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" allowsCharacterPickerTouchBarItem="YES" id="3Kt-xI-ELp">
-                        <rect key="frame" x="18" y="60" width="489" height="52"/>
+                        <rect key="frame" x="18" y="80" width="489" height="52"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" id="gRr-nC-ra9">
                             <font key="font" metaFont="system" size="10"/>
@@ -1034,7 +1037,7 @@ Spark is made possible by the WebKit open source project and other open source s
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" allowsCharacterPickerTouchBarItem="YES" id="era-qZ-wuw">
-                        <rect key="frame" x="18" y="99" width="56" height="13"/>
+                        <rect key="frame" x="18" y="119" width="56" height="13"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="WARNING:" id="0UG-IT-dn5">
                             <font key="font" metaFont="system" size="10"/>
@@ -1043,9 +1046,9 @@ Spark is made possible by the WebKit open source project and other open source s
                         </textFieldCell>
                     </textField>
                     <button misplaced="YES" id="Dsd-aD-fO0">
-                        <rect key="frame" x="18" y="18" width="189" height="18"/>
+                        <rect key="frame" x="18" y="38" width="189" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="Use spark://about webpage" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="tSd-Uk-uIG">
+                        <buttonCell key="cell" type="check" title="Use spark://about webpage" bezelStyle="regularSquare" imagePosition="left" inset="2" id="tSd-Uk-uIG">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -1054,7 +1057,7 @@ Spark is made possible by the WebKit open source project and other open source s
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="YES" id="Wuz-PX-SMz">
-                        <rect key="frame" x="73" y="127" width="167" height="33"/>
+                        <rect key="frame" x="73" y="147" width="167" height="33"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Configuration" id="cWD-g8-44W">
                             <font key="font" metaFont="system" size="27"/>
@@ -1063,13 +1066,24 @@ Spark is made possible by the WebKit open source project and other open source s
                         </textFieldCell>
                     </textField>
                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="5ax-wd-HiW">
-                        <rect key="frame" x="20" y="120" width="47" height="47"/>
+                        <rect key="frame" x="20" y="140" width="47" height="47"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="AppIcon256" id="Ggz-Tf-jA4"/>
                     </imageView>
+                    <button misplaced="YES" id="RpU-iM-YnY">
+                        <rect key="frame" x="18" y="18" width="224" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="Enable page load status indicator" bezelStyle="regularSquare" imagePosition="left" inset="2" id="loa-t6-5eS">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="enableLoadStatusIndicator:" target="Voe-Tx-rLC" id="QBr-0M-gjq"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="839.5" y="-891.5"/>
+            <point key="canvasLocation" x="839.5" y="-901.5"/>
         </window>
         <window allowsToolTipsWhenApplicationIsInactive="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
@@ -1504,6 +1518,33 @@ Spark is made possible by the WebKit open source project and other open source s
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSMenuOnStateTemplate" id="ypF-PB-dje"/>
                     </imageView>
+                    <customView hidden="YES" wantsLayer="YES" misplaced="YES" id="CVx-Za-LLm">
+                        <rect key="frame" x="-20" y="-19" width="326" height="56"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="NO" id="fkN-uu-OQa">
+                                <rect key="frame" x="20" y="19" width="286" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <shadow key="shadow" blurRadius="2">
+                                    <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </shadow>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" drawsBackground="YES" id="Jma-FQ-vwb">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="NO" id="GOI-gg-OmB">
+                                <rect key="frame" x="19" y="20" width="290" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Loading webpage..." id="idb-W0-H0u">
+                                    <font key="font" metaFont="system" size="11"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </customView>
                 </subviews>
             </view>
             <point key="canvasLocation" x="867.5" y="77"/>

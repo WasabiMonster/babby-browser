@@ -421,7 +421,7 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
     
     [self.loadingIndicator startAnimation:self];
     
-    // Set strings
+    // Set version/build strings
     self.currentVersion.stringValue = [NSString stringWithFormat:@"Version %@.%@", appVersionString, appBuildString];
     self.currentReleaseChannel.stringValue = [NSString stringWithFormat:@"%@ release channel", [releaseChannel capitalizedString]];
 
@@ -762,6 +762,16 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
     }
 }
 
+- (IBAction)enableLoadStatusIndicator:(id)sender {
+    if(self.enableLoadStatusIndicatorBtn.state == NSOnState) {
+        NSLog(@"Enabling page load status indicator...");
+        [defaults setBool:YES forKey:@"loadStatusIndicatorEnabled"];
+    } else {
+        NSLog(@"Disabling page load status indicator...");
+        [defaults setBool:NO forKey:@"loadStatusIndicatorEnabled"];
+    }
+}
+
 - (IBAction)addBookmark:(id)sender {
     self.bookmarkAddedName.stringValue = [NSString stringWithFormat:@"%@", self.webView.mainFrameTitle];
     self.bookmarkAddedView.hidden = NO;
@@ -1059,7 +1069,7 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
         if(candidateURL && candidateURL.scheme && candidateURL.host) {
             
             NSLog(@"URL is valid. Loading HTTPS webpage...");
-            
+
             [[self.webView mainFrame] loadRequest:[NSURLRequest requestWithURL:candidateURL]];
             self.addressBar.stringValue = [NSString stringWithFormat:@"%@", searchString];
         }
@@ -1269,11 +1279,28 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
 
 - (void)checkExperimentalConfig {
     
+    // Check if experimental config keys are nil
+    
+    if([defaults objectForKey:@"useSparkAboutPage"] == nil) {
+        [defaults setBool:NO forKey:@"useSparkAboutPage"];
+    }
+    
+    if([defaults objectForKey:@"loadStatusIndicatorEnabled"] == nil) {
+        [defaults setBool:NO forKey:@"loadStatusIndicatorEnabled"];
+    }
+    
     // Check if checkbox should be checked (spark://config - "Use spark://about webpage")
     if([defaults boolForKey:@"useSparkAboutPage"] == YES) {
         self.useAboutPageBtn.state = NSOnState;
     } else {
         self.useAboutPageBtn.state = NSOffState;
+    }
+    
+    // Check if checkbox should be checked (spark://config - "Enable page load status indicator")
+    if([defaults boolForKey:@"loadStatusIndicatorEnabled"] == YES) {
+        self.enableLoadStatusIndicatorBtn.state = NSOnState;
+    } else {
+        self.enableLoadStatusIndicatorBtn.state = NSOffState;
     }
 }
 
@@ -1439,8 +1466,8 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
         
         self.addressBar.stringValue = self.webView.mainFrameURL;
         
-    } else if([urlToString isEqual: @"spark://config"]) {
-        // spark://config called
+    } else if([urlToString isEqual: @"spark://config"] || [urlToString isEqual: @"spark://flags"]) {
+        // spark://config || spark://flags called
         
         NSLog(@"%@ called. Opening Configuration window...", urlToString);
         
@@ -1894,6 +1921,11 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
         self.loadingIndicator.hidden = NO;
         [self.loadingIndicator startAnimation:self];
         
+        if([defaults boolForKey:@"loadStatusIndicatorEnabled"] == YES) {
+            self.loadStatusIndicatorText.stringValue = @"Loading...";
+            self.loadStatusIndicator.hidden = NO;
+        }
+        
         // Check whether or not we're handling a local file
         if([self.addressBar.stringValue hasPrefix:@"file://"]) {
             [self handleFilePrefix];
@@ -1936,6 +1968,11 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
         
         if(self.faviconImage.image == nil) { // Check whether or not a favicon image exists for the current webpage
             self.faviconImage.image = [NSImage imageNamed:@"defaultfavicon"];
+        }
+        
+        if([defaults boolForKey:@"loadStatusIndicatorEnabled"] == YES) {
+            self.loadStatusIndicatorText.stringValue = @"Load complete.";
+            self.loadStatusIndicator.hidden = YES;
         }
         
         // Set up page indicator
