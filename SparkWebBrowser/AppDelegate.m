@@ -243,7 +243,7 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
     // Set key if not already set
     if([defaults objectForKey:@"showHomeBtn"] == nil) {
         
-        NSLog(@"Warning: no key is set for object showHomeBtn. Setting now...");
+        NSLog(@"Warning: No key is set for object showHomeBtn. Setting now...");
         
         [defaults setBool:NO forKey:@"showHomeBtn"];
         self.showHomeBtn.state = NSOffState;
@@ -254,14 +254,14 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
     // NSUserDefaults key value checking
     if([defaults objectForKey:@"currentReleaseChannel"] == nil) {
         // No release channel is set -- revert to default
-        NSLog(@"Warning: no release channel is set. Setting now...");
+        NSLog(@"Warning: No release channel is set. Setting now...");
         
         [defaults setObject:[NSString stringWithFormat:@"stable"] forKey:@"currentReleaseChannel"];
     }
     
     if([defaults objectForKey:@"releaseChannelIndex"] == nil) {
         // No release channel index is set -- revert to default
-        NSLog(@"Warning: no release channel index is set. Setting now...");
+        NSLog(@"Warning: No release channel index is set. Setting now...");
         
         [defaults setInteger:0 forKey:@"releaseChannelIndex"];
     }
@@ -270,14 +270,14 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
     
     if([defaults objectForKey:@"currentSearchEngine"] == nil) {
         // No search engine is set -- revert to default
-        NSLog(@"Warning: no search engine is set. Setting now...");
+        NSLog(@"Warning: No search engine is set. Setting now...");
         
         [defaults setObject:[NSString stringWithFormat:@"Google"] forKey:@"currentSearchEngine"];
     }
     
     if([defaults objectForKey:@"searchEngineIndex"] == nil) {
         // No search engine index is set -- revert to default
-        NSLog(@"Warning: no search engine index is set. Setting now...");
+        NSLog(@"Warning: No search engine index is set. Setting now...");
         
         [defaults setInteger:0 forKey:@"searchEngineIndex"];
     }
@@ -286,7 +286,7 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
     
     if([defaults objectForKey:@"customSearchEngine"] == nil) {
         // A custom search engine is not set
-        NSLog(@"Warning: the value of \"customSearchEngine\" is nil. Setting now...");
+        NSLog(@"Warning: The value of \"customSearchEngine\" is nil. Setting now...");
         
         [defaults setObject:@"" forKey:@"customSearchEngine"];
         self.customSearchEngineField.hidden = YES;
@@ -295,7 +295,7 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
     
     if([defaults objectForKey:@"currentColor"] == nil) {
         // No theme color is set -- revert to default
-        NSLog(@"Warning: no theme color is set. Setting now...");
+        NSLog(@"Warning: No theme color is set. Setting now...");
         
         [defaults setObject:@"Default" forKey:@"currentColor"];
     }
@@ -304,7 +304,7 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
     
     if([defaults objectForKey:@"currentDownloadLocation"] == nil) {
         // No download location is set -- revert to default
-        NSLog(@"Warning: no download location is set. Setting now...");
+        NSLog(@"Warning: No download location is set. Setting now...");
         
         [defaults setObject:[NSString stringWithFormat:@"%@/Downloads/", homeDirectory] forKey:@"currentDownloadLocation"];
     }
@@ -328,21 +328,29 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
         self.homepageRadioBtn.state = NSOnState;
     }
     
+    // Check whether or not urlEventOverrideActive key exists
+    if([defaults objectForKey:@"urlEventOverrideActive"] == nil) {
+        NSLog(@"Warning: No value found for key urlEventOverrideActive. Setting now...");
+        [defaults setBool:NO forKey:@"urlEventOverrideActive"];
+    }
+    
     // Homepage checking
     if([defaults objectForKey:@"userHomepage"] == nil || [[defaults objectForKey:@"userHomepage"] isEqual: @""]) {
         // Homepage is not set
-        NSLog(@"Error: homepage is not set. Setting now...");
+        NSLog(@"Error: Homepage is not set. Setting now...");
         
         // Default homepage
         [self setHomepageWithString:googleDefaultURL];
         
-        if([defaults boolForKey:@"startupWithLastSession"] == NO) {
-            [[self.webView mainFrame] loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", [defaults valueForKey:@"userHomepage"]]]]];
-        } else {
-            if([defaults objectForKey:@"lastSession"] == nil || [[defaults objectForKey:@"lastSession"] isEqual: @""]) {
-                [defaults setObject:[NSString stringWithFormat:@"%@", [defaults objectForKey:@"userHomepage"]] forKey:@"lastSession"];
+        if([defaults boolForKey:@"urlEventOverrideActive"] == NO || [defaults objectForKey:@"urlEventOverrideActive"] == nil) { // At this point, urlEventOverrideActive shouldn't be nil but we might as well handle it anyway
+            if([defaults boolForKey:@"startupWithLastSession"] == NO) {
+                [[self.webView mainFrame] loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", [defaults valueForKey:@"userHomepage"]]]]];
+            } else {
+                if([defaults objectForKey:@"lastSession"] == nil || [[defaults objectForKey:@"lastSession"] isEqual: @""]) {
+                    [defaults setObject:[NSString stringWithFormat:@"%@", [defaults objectForKey:@"userHomepage"]] forKey:@"lastSession"];
+                }
+                [[self.webView mainFrame] loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", [defaults valueForKey:@"lastSession"]]]]];
             }
-            [[self.webView mainFrame] loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", [defaults valueForKey:@"lastSession"]]]]];
         }
         
     } else {
@@ -352,16 +360,18 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
         // User-set homepage
         self.homepageTextField.stringValue = [NSString stringWithFormat:@"%@", [defaults valueForKey:@"userHomepage"]];
         
-        if([defaults boolForKey:@"startupWithLastSession"] == NO) {
-            
-            [[self.webView mainFrame] loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", [defaults valueForKey:@"userHomepage"]]]]];
-        } else {
-            if([defaults objectForKey:@"lastSession"] == nil || [[defaults objectForKey:@"lastSession"] isEqual: @""]) {
-                [defaults setObject:[NSString stringWithFormat:@"%@", [defaults objectForKey:@"userHomepage"]] forKey:@"lastSession"];
+        if([defaults boolForKey:@"urlEventOverrideActive"] == NO || [defaults objectForKey:@"urlEventOverrideActive"] == nil) { // At this point, urlEventOverrideActive shouldn't be nil but we might as well handle it anyway
+            if([defaults boolForKey:@"startupWithLastSession"] == NO) {
+                [[self.webView mainFrame] loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", [defaults valueForKey:@"userHomepage"]]]]];
+            } else {
+                if([defaults objectForKey:@"lastSession"] == nil || [[defaults objectForKey:@"lastSession"] isEqual: @""]) {
+                    [defaults setObject:[NSString stringWithFormat:@"%@", [defaults objectForKey:@"userHomepage"]] forKey:@"lastSession"];
+                }
+                
+                [[self.webView mainFrame] loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", [defaults valueForKey:@"lastSession"]]]]];
             }
-            
-            [[self.webView mainFrame] loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", [defaults valueForKey:@"lastSession"]]]]];
         }
+        
     }
     
     // Check if checkbox should be checked (setHomepageBtn)
@@ -1361,10 +1371,20 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
 #pragma mark - URL event handling
 
 - (void)handleGetURLEvent:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
-    // Handle spark:// URL events
+    // Handle URL events
     
     eventURL = [NSURL URLWithString:[[event paramDescriptorForKeyword:keyDirectObject] stringValue]];
     urlToString = [eventURL absoluteString];
+    
+    [defaults setBool:YES forKey:@"urlEventOverrideActive"];
+    NSLog(@"URL event override is now active");
+    
+    if([urlToString containsString:@"http"] || [urlToString containsString:@"https"]) {
+        // HTTP/HTTPS webpage load called
+        
+        NSLog(@"Webpage load called via URL event");
+        [[self.webView mainFrame] loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlToString]]];
+    }
     
     if([urlToString isEqual: @"spark://about"] || [urlToString isEqual: @"spark://spark"]) {
         // spark://about || spark://spark called
@@ -1950,10 +1970,23 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
             [self.addressBar setTextColor:[NSColor blackColor]];
         }
         
-        // Reset insecureHTTPSOverride key (if set)
+        // Set actual page URL if the HTTPS override is inactive and we are not viewing a spark:// page
+        if([defaults boolForKey:@"insecureHTTPSOverride"] == NO && ![self.addressBar.stringValue hasPrefix:@"spark:"]) {
+            self.addressBar.stringValue = self.webView.mainFrameURL;
+        }
+        
+        // Check whether or not insecureHTTPSOverride is set
         if([defaults boolForKey:@"insecureHTTPSOverride"] == YES) {
+            // Reset override
             [defaults setBool:NO forKey:@"insecureHTTPSOverride"];
             NSLog(@"Successfully reset insecureHTTPSOverride key.");
+        }
+        
+        // Check whether or not urlEventOverrideActive is set
+        if([defaults boolForKey:@"urlEventOverrideActive"] == YES) {
+            // Reset override
+            [defaults setBool:NO forKey:@"urlEventOverrideActive"];
+            NSLog(@"Successfully reset urlEventOverrideActive key.");
         }
         
         // Set values for use on spark:// pages
