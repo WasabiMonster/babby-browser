@@ -195,10 +195,10 @@ NSString *setReleaseChannelRestartLaterBtnText = @"Restart Later";
 // "Search" panel
 
 /// Text shown when the user enters an invalid URL in the custom search engine field
-NSString *customSearchEngineInvalidURLText = @"An error occurred: the text you entered is not a valid URL. Please enter a valid URL and try again.";
+NSString *customSearchEngineInvalidURLText = @"An error occurred: The text you entered is not a valid URL. Please enter a valid URL and try again.";
 
 /// Text shown when the user enters nothing in the custom search engine field
-NSString *customSearchEngineEmptyText = @"An error occurred: you did not enter any text. Please enter a valid URL and try again.";
+NSString *customSearchEngineEmptyText = @"An error occurred: You did not enter any text. Please enter a valid URL and try again.";
 
 
 // "Reset" panel

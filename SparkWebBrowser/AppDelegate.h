@@ -283,8 +283,13 @@
 - (void)checkExperimentalConfig;
 
 /**
- * Handle webpage title when it is a local file.
+ * Handle local file webpage titles.
  */
 - (void)handleFilePrefix;
+
+/**
+ * Handle errors when no webpage title is set.
+ */
+- (void)handleNoWebpageTitleSet;
 
 @end

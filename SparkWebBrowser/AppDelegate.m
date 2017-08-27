@@ -424,7 +424,7 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
     // Set strings
     self.currentVersion.stringValue = [NSString stringWithFormat:@"Version %@.%@", appVersionString, appBuildString];
     self.currentReleaseChannel.stringValue = [NSString stringWithFormat:@"%@ release channel", [releaseChannel capitalizedString]];
-    
+
     // Window setup
     self.aboutWindow.backgroundColor = [NSColor whiteColor];
     self.errorWindow.backgroundColor = [NSColor whiteColor];
@@ -448,6 +448,8 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
     self.settingsWindow.movableByWindowBackground = YES;
     self.configWindow.movableByWindowBackground = YES;
     self.historyWindow.movableByWindowBackground = YES;
+    
+    self.window.titleVisibility = NSWindowTitleHidden;
     
     currentBookmarkTitlesArray = [defaults objectForKey:@"storedBookmarkTitlesArray"];
     currentBookmarkIconsArray = [defaults objectForKey:@"storedBookmarkIconsArray"];
@@ -1049,7 +1051,7 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
     candidateURL = [NSURL URLWithString:self.addressBar.stringValue]; // String value of addressBar converted to an NSURL
     
     searchString = self.addressBar.stringValue; // String value of addressBar
-    
+
     if([searchString hasPrefix:@"https://"]) {
         
         self.pageStatusImage.hidden = YES;
@@ -1250,7 +1252,10 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
 #pragma mark - Various methods
 
 - (void)handleFilePrefix {
-    
+    [self handleNoWebpageTitleSet];
+}
+
+- (void)handleNoWebpageTitleSet {
     clippedTitle = self.webView.mainFrameURL;
     
     const int clipLength = 25;
@@ -1895,7 +1900,7 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
         }
         
         // Use Google to get website favicons
-        // In the future, the app should be able to detect a favicon.ico instead of relying on a service to get favicons
+        // In the future, Spark should be able to detect a favicon.ico instead of relying on a service to get favicons
         faviconURLString = [NSString stringWithFormat:@"https://www.google.com/s2/favicons?domain=%@", websiteURL];
         faviconURL = [NSURL URLWithString:faviconURLString];
         faviconData = [NSData dataWithContentsOfURL:faviconURL];
@@ -1923,6 +1928,7 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
         self.reloadBtn.image = [NSImage imageNamed:NSImageNameRefreshTemplate];
         self.loadingIndicator.hidden = YES;
         self.faviconImage.hidden = NO;
+        self.window.title = self.titleStatus.stringValue;
         
         if([self.addressBar.stringValue hasPrefix: @"spark:"]) { // Check whether or not a spark:// page is being loaded
             self.faviconImage.image = [NSImage imageNamed:@"favicon.ico"];
@@ -1987,6 +1993,10 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
             // Reset override
             [defaults setBool:NO forKey:@"urlEventOverrideActive"];
             NSLog(@"Successfully reset urlEventOverrideActive key.");
+        }
+        
+        if([[self.webView stringByEvaluatingJavaScriptFromString:@"document.title"] isEqual: @""]) {
+            [self handleNoWebpageTitleSet];
         }
         
         // Set values for use on spark:// pages
