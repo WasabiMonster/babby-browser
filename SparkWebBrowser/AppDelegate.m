@@ -624,11 +624,6 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
         self.customSearchEngineField.hidden = YES;
         self.customSearchEngineSaveBtn.hidden = YES;
     }
-    
-    // Future preferences options
-    // [[self.webView preferences] setJavaEnabled:false];
-    // [[self.webView preferences] setJavaScriptEnabled:false];
-    // [[self.webView preferences] setPlugInsEnabled:false];
 }
 
 #pragma mark - IBActions
@@ -1182,7 +1177,6 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
         }
         
         [defaults setObject:[NSString stringWithFormat:@"%@", self.addressBar.stringValue] forKey:@"lastSession"];
-        
     }
 }
 
@@ -1962,6 +1956,10 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
         self.faviconImage.hidden = NO;
         self.window.title = self.titleStatus.stringValue;
         
+        // Temporarily disabled
+        /*[self.backBtn setEnabled:[sender canGoBack]];
+         [self.forwardBtn setEnabled:[sender canGoForward]];*/
+        
         if([self.addressBar.stringValue hasPrefix: @"spark:"]) { // Check whether or not a spark:// page is being loaded
             self.faviconImage.image = [NSImage imageNamed:@"favicon.ico"];
         }
@@ -2032,6 +2030,7 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
             NSLog(@"Successfully reset urlEventOverrideActive key.");
         }
         
+        // Check if webpage title is blank
         if([[self.webView stringByEvaluatingJavaScriptFromString:@"document.title"] isEqual: @""]) {
             [self handleNoWebpageTitleSet];
         }
