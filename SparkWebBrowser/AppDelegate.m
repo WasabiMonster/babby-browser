@@ -390,10 +390,22 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
         self.showHomeBtn.state = NSOnState;
         self.homeBtn.hidden = NO;
         [self.addressBar setFrame:NSMakeRect(113, 595, 967, 22)];
+        
+        // Check whether or not Spark opened in full screen
+        if(([self.window styleMask] & NSFullScreenWindowMask) == NSFullScreenWindowMask) {
+            NSLog(@"Layout error: Spark opened in full screen mode but the address bar is set incorrectly.");
+            self.loadStatusIndicatorText.stringValue = @"A layout error occurred.";
+        }
     } else {
         self.showHomeBtn.state = NSOffState;
         self.homeBtn.hidden = YES;
         [self.addressBar setFrame:NSMakeRect(89, 595, 991, 22)];
+        
+        // Check whether or not Spark opened in full screen
+        if(([self.window styleMask] & NSFullScreenWindowMask) == NSFullScreenWindowMask) {
+            NSLog(@"Layout error: Spark opened in full screen mode but the address bar is set incorrectly.");
+            self.loadStatusIndicatorText.stringValue = @"A layout error occurred.";
+        }
     }
     
     if([[defaults objectForKey:@"currentReleaseChannel"] isEqual: @"dev"]) { // Create fallback from "dev" channel for those migrating from previous versions
@@ -832,6 +844,7 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
         
         [defaults setBool:YES forKey:@"showHomeBtn"];
         self.homeBtn.hidden = NO;
+        
         [self.addressBar setFrame:NSMakeRect(113, 595, 967, 22)];
         
     } else if([self.showHomeBtn state] == NSOffState) {
@@ -839,6 +852,7 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
         
         [defaults setBool:NO forKey:@"showHomeBtn"];
         self.homeBtn.hidden = YES;
+        
         [self.addressBar setFrame:NSMakeRect(89, 595, 991, 22)];
     }
 }
@@ -1367,7 +1381,7 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
         [defaults setObject:[NSString stringWithFormat:@"%@", homepageToSet] forKey:@"userHomepage"];
         self.homepageTextField.stringValue = [defaults objectForKey:@"userHomepage"];
     } else { // Invalid address
-        NSLog(@"Homepage not set: invalid web address.");
+        NSLog(@"Error - Homepage not set: Invalid web address.");
         [self setHomepageWithString:googleDefaultURL];
     }
 }
@@ -1954,7 +1968,6 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
         self.reloadBtn.image = [NSImage imageNamed:NSImageNameRefreshTemplate];
         self.loadingIndicator.hidden = YES;
         self.faviconImage.hidden = NO;
-        self.window.title = self.titleStatus.stringValue;
         
         // Temporarily disabled
         /*[self.backBtn setEnabled:[sender canGoBack]];
@@ -2051,7 +2064,7 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
         
         [self.webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('sparkWebBrowser-invalidURLRequested').innerHTML = '%@';", searchString]];
         
-        /*if([[NSProcessInfo processInfo] operatingSystemVersion].minorVersion == 13 && ![operatingSystemBuildString isEqual: @"17A264c"]) { // Check whether or not user is running macOS 10.13 or later
+        /*if([[NSProcessInfo processInfo] operatingSystemVersion].minorVersion == 13 && ![operatingSystemBuildString isEqual: @"17A358a"]) { // Check whether or not user is running macOS 10.13 or later
             // Beta operating system disclaimer
             [self.webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('sparkWebBrowser-operatingSystemBetaDisclaimer').innerHTML = '<p class=\"about-betadisclaimer\"><span class=\"about-betadisclaimer-warning\">WARNING: </span>%@</p>';", [NSString stringWithFormat:betaOperatingSystemDisclaimerText, operatingSystemBuildString]]];
         }*/
@@ -2072,6 +2085,7 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
         
         [self.titleStatus setStringValue:clippedTitle]; // Set titleStatus to clipped title
         self.titleStatus.toolTip = title; // Set tooltip to unclipped title
+        self.window.title = title; // Set window title to unclipped title
     }
 }
 
