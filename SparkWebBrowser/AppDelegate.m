@@ -675,7 +675,7 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
     
     if([self.customSearchEngineField.stringValue isEqual: @""] || [self.customSearchEngineField.stringValue isEqual: nil]) {
         // Text field is empty
-        NSLog(@"Error: custom search engine text field is empty.");
+        NSLog(@"Error: Custom search engine text field is empty.");
         
         self.errorPanelTitle.stringValue = genericErrorTitle;
         self.errorPanelText.stringValue = customSearchEngineEmptyText;
@@ -687,7 +687,7 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
         [self saveCustomSearchEngineText:self];
     } else {
         // String is not a valid URL
-        NSLog(@"Error: custom search engine text field does not contain a valid URL.");
+        NSLog(@"Error: Custom search engine text field does not contain a valid URL.");
         
         self.errorPanelTitle.stringValue = genericErrorTitle;
         self.errorPanelText.stringValue = customSearchEngineInvalidURLText;
@@ -807,6 +807,10 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
 - (IBAction)cancelBookmarkCreation:(id)sender {
     self.bookmarkAddedView.hidden = YES;
     [defaults setBool:NO forKey:@"bookmarkViewOpen"];
+}
+
+- (IBAction)manageCertificatesBtnPressed:(id)sender {
+    [[NSWorkspace sharedWorkspace] launchApplication:@"/Applications/Utilities/Keychain Access.app"]; // Open Keychain Access
 }
 
 - (IBAction)openBookmark:(id)sender {
@@ -1037,7 +1041,7 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
         self.customSearchEngineField.stringValue = [defaults objectForKey:@"customSearchEngine"];
         
         if([defaults objectForKey:@"customSearchEngine"] != nil) {
-            if([[defaults objectForKey:@"customSearchEngine"] hasPrefix:@"http://"] || [[defaults objectForKey:@"customSearchEngine"]  hasPrefix:@"https://"]) {
+            if([[defaults objectForKey:@"customSearchEngine"] hasPrefix:@"http://"] || [[defaults objectForKey:@"customSearchEngine"] hasPrefix:@"https://"]) {
                 [self saveCustomSearchEngineText:self];
                 [defaults setBool:NO forKey:@"setHomepageEngine"];
                 self.homepageBasedOnSearchEngineBtn.state = NSOffState;
@@ -1337,7 +1341,7 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
         
     } else {
         // Text field does not contain query text.
-        NSLog(@"Error: custom search engine text field does not contain query text.");
+        NSLog(@"Error: Custom search engine text field does not contain query text.");
         
         self.errorPanelTitle.stringValue = genericErrorTitle;
         self.errorPanelText.stringValue = customSearchEngineInvalidURLText;

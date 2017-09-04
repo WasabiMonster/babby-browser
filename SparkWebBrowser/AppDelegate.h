@@ -266,6 +266,12 @@
  */
 - (IBAction)cancelBookmarkCreation:(id)sender;
 
+/**
+ * Open Keychain Access and display certificates.
+ * @param sender
+ */
+- (IBAction)manageCertificatesBtnPressed:(id)sender;
+
 #pragma mark - Various methods
 - (void)webView:(WebView *)sender didStartProvisionalLoadForFrame:(WebFrame *)frame;
 - (void)webView:(WebView *)sender didReceiveTitle:(NSString *)title forFrame:(WebFrame *)frame;
