@@ -53,6 +53,7 @@
 @property (assign, nonatomic) IBOutlet NSTextField *bytesDownloadedText;
 @property (assign, nonatomic) IBOutlet NSImageView *fileDownloadStatusIcon;
 @property (assign, nonatomic) IBOutlet NSTextField *downloadLocTextField;
+@property (assign, nonatomic) IBOutlet NSView *downloadsView;
 @property (assign, nonatomic) IBOutlet NSTextField *customSearchEngineField;
 @property (assign, nonatomic) IBOutlet NSButton *customSearchEngineSaveBtn;
 @property (assign, nonatomic) IBOutlet NSButton *lastSessionRadioBtn;

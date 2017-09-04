@@ -238,6 +238,7 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
     // Set up WebView
     [self.webView setPolicyDelegate:(id<WebPolicyDelegate>)self];
     [self.webView setDownloadDelegate:(id<WebDownloadDelegate>)self];
+    [self.webView setUIDelegate:(id<WebUIDelegate>)self];
     [self.webView setCustomUserAgent:userAgent];
 
     // Set key if not already set
@@ -666,11 +667,7 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
 
 - (IBAction)closeDownloadingView:(id)sender {
     
-    self.downloadProgressIndicator.hidden = YES;
-    self.bytesDownloadedText.hidden = YES;
-    self.downloadingViewBg.hidden = YES;
-    self.fileDownloadingText.hidden = YES;
-    self.closeDownloadingViewBtn.hidden = YES;
+    self.downloadsView.hidden = YES;
     self.fileDownloadStatusIcon.hidden = YES;
 }
 
@@ -1695,11 +1692,7 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
     self.faviconImage.hidden = NO;
     
     // Show downloads view
-    self.downloadProgressIndicator.hidden = NO;
-    self.bytesDownloadedText.hidden = NO;
-    self.downloadingViewBg.hidden = NO;
-    self.fileDownloadingText.hidden = NO;
-    self.closeDownloadingViewBtn.hidden = NO;
+    self.downloadsView.hidden = NO;
     self.fileDownloadStatusIcon.hidden = YES;
 }
 
@@ -1931,7 +1924,8 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
         
         if([defaults boolForKey:@"loadStatusIndicatorEnabled"] == YES) {
             self.loadStatusIndicatorText.stringValue = @"Loading...";
-            self.loadStatusIndicator.hidden = NO;
+            self.loadStatusIndicator.hidden = NO; // Unhide load status indicator view
+            self.loadStatusIndicator.animator.alphaValue = 1; // Set its alpha value to 1
         }
         
         // Check whether or not we're handling a local file
@@ -1981,9 +1975,8 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
             self.faviconImage.image = [NSImage imageNamed:@"defaultfavicon"];
         }
         
-        if([defaults boolForKey:@"loadStatusIndicatorEnabled"] == YES) {
-            self.loadStatusIndicatorText.stringValue = @"Load complete.";
-            self.loadStatusIndicator.hidden = YES;
+        if([defaults boolForKey:@"loadStatusIndicatorEnabled"] == YES) { // Check whether or not the load status indicator is enabled
+            self.loadStatusIndicator.animator.alphaValue = 0; // Set the load status indicator alpha value to 0
         }
         
         // Set up page indicator
@@ -2070,6 +2063,25 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
         }*/
     }
 }
+
+
+
+- (void)webView:(WebView *)sender mouseDidMoveOverElement:(NSDictionary *)elementInformation modifierFlags:(NSUInteger)modifierFlags {
+    NSArray *keys = [elementInformation objectForKey:WebElementLinkURLKey];
+    
+    // here I pass the link to a label
+    if (keys != nil) {
+        self.loadStatusIndicator.animator.alphaValue = 1; // Set alpha value to 1
+        [self.loadStatusIndicatorText setStringValue:[NSString stringWithFormat:@"%@",keys]];
+    } else {
+        [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+            context.duration = 0.5;
+            self.loadStatusIndicator.animator.alphaValue = 0; // Set alpha value to 0
+        } completionHandler:nil];
+    }
+
+}
+
 
 - (void)webView:(WebView *)sender didReceiveTitle:(NSString *)title forFrame:(WebFrame *)frame {
     
