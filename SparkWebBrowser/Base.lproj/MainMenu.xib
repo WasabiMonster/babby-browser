@@ -889,7 +889,7 @@ Spark is made possible by the WebKit open source project and other open source s
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         </box>
                                         <button verticalHuggingPriority="750" misplaced="YES" id="eCi-mg-vQd">
-                                            <rect key="frame" x="11" y="73" width="143" height="32"/>
+                                            <rect key="frame" x="11" y="43" width="143" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="push" title="Clear Bookmarks" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HXw-eI-7qG">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -900,7 +900,7 @@ Spark is made possible by the WebKit open source project and other open source s
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" misplaced="YES" id="2YR-eh-zct">
-                                            <rect key="frame" x="11" y="103" width="119" height="32"/>
+                                            <rect key="frame" x="11" y="73" width="119" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="push" title="Clear History" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8nk-3h-nLU">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -911,17 +911,30 @@ Spark is made possible by the WebKit open source project and other open source s
                                             </connections>
                                         </button>
                                         <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="rdJ-KI-69a">
-                                            <rect key="frame" x="156" y="85" width="12" height="12"/>
+                                            <rect key="frame" x="156" y="55" width="12" height="12"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSMenuOnStateTemplate" id="D0d-zP-mbg"/>
                                         </imageView>
                                         <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="orl-ej-3FT">
-                                            <rect key="frame" x="132" y="115" width="12" height="12"/>
+                                            <rect key="frame" x="132" y="85" width="12" height="12"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSMenuOnStateTemplate" id="u6t-Zd-RX7"/>
                                         </imageView>
+                                        <button verticalHuggingPriority="750" misplaced="YES" id="AnO-1i-4yC">
+                                            <rect key="frame" x="11" y="103" width="119" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="push" title="Clear Cache" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="UAi-OQ-LCe">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                        </button>
+                                        <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="u7S-Zd-9Xk">
+                                            <rect key="frame" x="132" y="115" width="12" height="12"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSMenuOnStateTemplate" id="xnX-v9-CKJ"/>
+                                        </imageView>
                                         <button verticalHuggingPriority="750" misplaced="YES" id="xLN-5b-LQt">
-                                            <rect key="frame" x="11" y="27" width="163" height="32"/>
+                                            <rect key="frame" x="11" y="10" width="163" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="push" title="Manage Certificates" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Fnx-gZ-QZg">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -931,6 +944,15 @@ Spark is made possible by the WebKit open source project and other open source s
                                                 <action selector="manageCertificatesBtnPressed:" target="Voe-Tx-rLC" id="RPP-23-SJj"/>
                                             </connections>
                                         </button>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="YES" id="Ql4-Ul-Av1">
+                                            <rect key="frame" x="246" y="114" width="44" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Cache" id="lPn-UV-TU5">
+                                                <font key="font" metaFont="systemSemibold" size="13"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
                                     </subviews>
                                 </view>
                             </tabViewItem>
