@@ -113,6 +113,9 @@ extern NSString *setReleaseChannelRestartLaterBtnText;
 extern NSString *customSearchEngineInvalidURLText;
 extern NSString *customSearchEngineEmptyText;
 
+// "Privacy" panel
+extern NSString *clearBrowsingDataSelectionErrorText;
+
 // "Reset" panel
 extern NSString *resetAllSettingsTitle;
 extern NSString *resetAllSettingsDetailText;
@@ -445,6 +448,7 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
     self.settingsWindow.backgroundColor = [NSColor whiteColor];
     self.configWindow.backgroundColor = [NSColor whiteColor];
     self.historyWindow.backgroundColor = [NSColor whiteColor];
+    self.clearBrowsingDataWindow.backgroundColor = [NSColor whiteColor];
     
     self.window.titlebarAppearsTransparent = YES;
     self.aboutWindow.titlebarAppearsTransparent = YES;
@@ -453,6 +457,7 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
     self.settingsWindow.titlebarAppearsTransparent = YES;
     self.configWindow.titlebarAppearsTransparent = YES;
     self.historyWindow.titlebarAppearsTransparent = YES;
+    self.clearBrowsingDataWindow.titlebarAppearsTransparent = YES;
     
     self.window.movableByWindowBackground = YES;
     self.aboutWindow.movableByWindowBackground = YES;
@@ -461,8 +466,16 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
     self.settingsWindow.movableByWindowBackground = YES;
     self.configWindow.movableByWindowBackground = YES;
     self.historyWindow.movableByWindowBackground = YES;
+    self.clearBrowsingDataWindow.movableByWindowBackground = YES;
     
     self.window.titleVisibility = NSWindowTitleHidden;
+    self.aboutWindow.titleVisibility = NSWindowTitleHidden;
+    self.errorWindow.titleVisibility = NSWindowTitleHidden;
+    self.popupWindow.titleVisibility = NSWindowTitleHidden;
+    self.settingsWindow.titleVisibility = NSWindowTitleHidden;
+    self.configWindow.titleVisibility = NSWindowTitleHidden;
+    self.historyWindow.titleVisibility = NSWindowTitleHidden;
+    self.clearBrowsingDataWindow.titleVisibility = NSWindowTitleHidden;
     
     currentBookmarkTitlesArray = [defaults objectForKey:@"storedBookmarkTitlesArray"];
     currentBookmarkIconsArray = [defaults objectForKey:@"storedBookmarkIconsArray"];
@@ -824,10 +837,6 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
     
     [[self.webView mainFrame] loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:bookmarkString]]];
     self.addressBar.stringValue = bookmarkString;
-}
-
-- (IBAction)clearBookmarks:(id)sender {
-    [bookmarkHandler clearBookmarks];
 }
 
 - (IBAction)clearHistory:(id)sender {
@@ -1284,6 +1293,116 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
     
     [self.titleStatus setStringValue:clippedTitle]; // Set titleStatus to clipped title
     self.titleStatus.toolTip = self.webView.mainFrameURL; // Set tooltip to unclipped title
+}
+
+- (IBAction)clearBrowsingData:(id)sender {
+    
+    if(self.clearBrowsingData_browsingHistoryToggle.state == NSOffState && self.clearBrowsingData_cachedFilesToggle.state == NSOffState && self.clearBrowsingData_bookmarksToggle.state == NSOffState) {
+        self.clearBrowsingDataConfirmBtn.enabled = NO;
+    }
+    
+    [self.clearBrowsingDataWindow setDefaultButtonCell:[self.clearBrowsingDataConfirmBtn cell]];
+    
+    self.clearBrowsingDataWindow.isVisible = YES;
+    [self.clearBrowsingDataWindow makeKeyAndOrderFront:nil];
+    [NSApp activateIgnoringOtherApps:YES];
+}
+
+- (IBAction)confirmBrowsingDataDeletion:(id)sender {
+    
+    if(self.clearBrowsingData_browsingHistoryToggle.state == NSOnState) { // Check whether or not browsing history toggle is checked
+        NSLog(@"Browsing history toggle set to ON");
+        [historyHandler clearHistory];
+    }
+    
+    if(self.clearBrowsingData_cachedFilesToggle.state == NSOnState) { // Check whether or not cached files toggle is checked
+        NSLog(@"Cached files toggle set to ON");
+        [[NSURLCache sharedURLCache] removeAllCachedResponses];
+        NSLog(@"Cache cleared.");
+    }
+    
+    if(self.clearBrowsingData_bookmarksToggle.state == NSOnState) { // Check whether or not bookmarks toggle is checked
+        NSLog(@"Bookmarks toggle set to ON");
+        [bookmarkHandler clearBookmarks];
+    }
+    
+    if(self.clearBrowsingData_browsingHistoryToggle.state == NSOffState && self.clearBrowsingData_cachedFilesToggle.state == NSOffState && self.clearBrowsingData_bookmarksToggle.state == NSOffState) { // This should never happen, but we might as well handle it in case it somehow does.
+        NSLog(@"ConfirmBrowsingDataDeletion - Error: Nothing is selected. Cannot clear browsing data.");
+        
+        self.errorPanelTitle.stringValue = genericErrorTitle;
+        self.errorPanelText.stringValue = clearBrowsingDataSelectionErrorText;
+        self.errorWindow.isVisible = YES;
+        [self.errorWindow makeKeyAndOrderFront:nil];
+        [NSApp activateIgnoringOtherApps:YES];
+    }
+    
+    [self.clearBrowsingDataWindow close]; // Close window
+    
+    // Display a checkmark after browsing data is cleared
+    self.browsingDataClearedIcon.hidden = NO;
+    
+    // Timer to display the checkmark for 2 seconds
+    int64_t delayInSeconds = 2.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void) {
+        self.browsingDataClearedIcon.hidden = YES;
+    });
+    
+    // Disable confirm button
+    self.clearBrowsingDataConfirmBtn.enabled = NO;
+    
+    // Reset toggles
+    self.clearBrowsingData_browsingHistoryToggle.state = NSOffState;
+    self.clearBrowsingData_cachedFilesToggle.state = NSOffState;
+    self.clearBrowsingData_bookmarksToggle.state = NSOffState;
+}
+
+- (IBAction)cancelClearBrowsingData:(id)sender {
+    [self.clearBrowsingDataWindow close]; // Close window
+    
+    // Disable confirm button
+    self.clearBrowsingDataConfirmBtn.enabled = NO;
+    
+    // Reset toggles
+    self.clearBrowsingData_browsingHistoryToggle.state = NSOffState;
+    self.clearBrowsingData_cachedFilesToggle.state = NSOffState;
+    self.clearBrowsingData_bookmarksToggle.state = NSOffState;
+}
+
+- (IBAction)clearBrowsingData_browsingHistory_toggled:(id)sender {
+    if(self.clearBrowsingData_browsingHistoryToggle.state == NSOnState) { // Check whether or not browsing history toggle is checked
+        self.clearBrowsingDataConfirmBtn.enabled = YES; // Enable confirm button
+    } else {
+        if(self.clearBrowsingData_cachedFilesToggle.state == NSOnState || self.clearBrowsingData_bookmarksToggle.state == NSOnState) { // Check whether or not other toggles are checked
+            self.clearBrowsingDataConfirmBtn.enabled = YES; // Enable confirm button
+        } else {
+            self.clearBrowsingDataConfirmBtn.enabled = NO; // Disable confirm button
+        }
+    }
+}
+
+- (IBAction)clearBrowsingData_cachedFiles_toggled:(id)sender {
+    if(self.clearBrowsingData_cachedFilesToggle.state == NSOnState) {
+        self.clearBrowsingDataConfirmBtn.enabled = YES; // Enable confirm button
+    } else {
+        if(self.clearBrowsingData_browsingHistoryToggle.state == NSOnState || self.clearBrowsingData_bookmarksToggle.state == NSOnState) { // Check whether or not other toggles are checked
+            self.clearBrowsingDataConfirmBtn.enabled = YES; // Enable confirm button
+        } else {
+            self.clearBrowsingDataConfirmBtn.enabled = NO; // Disable confirm button
+        }
+    }
+}
+
+- (IBAction)clearBrowsingData_bookmarks_toggled:(id)sender {
+    if(self.clearBrowsingData_bookmarksToggle.state == NSOnState) {
+        self.clearBrowsingDataConfirmBtn.enabled = YES; // Enable confirm button
+    } else {
+        if(self.clearBrowsingData_browsingHistoryToggle.state == NSOnState || self.clearBrowsingData_cachedFilesToggle.state == NSOnState) { // Check whether or not other toggles are checked
+            self.clearBrowsingDataConfirmBtn.enabled = YES; // Enable confirm button
+        } else {
+            self.clearBrowsingDataConfirmBtn.enabled = NO; // Disable confirm button
+        }
+    }
 }
 
 - (void)checkExperimentalConfig {

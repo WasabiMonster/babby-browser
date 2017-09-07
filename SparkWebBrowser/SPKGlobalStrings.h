@@ -201,6 +201,11 @@ NSString *customSearchEngineInvalidURLText = @"An error occurred: The text you e
 NSString *customSearchEngineEmptyText = @"An error occurred: You did not enter any text. Please enter a valid URL and try again.";
 
 
+// "Privacy" panel
+
+/// Text shown when a selection error occurs when clearing browsing data
+NSString *clearBrowsingDataSelectionErrorText = @"Browsing data could not be cleared. Please open an issue on GitHub for assistance.";
+
 // "Reset" panel
 
 /// Title shown when resetting all settings

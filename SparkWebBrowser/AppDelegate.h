@@ -25,6 +25,7 @@
 @property (assign, nonatomic) IBOutlet NSPanel *popupWindow;
 @property (assign, nonatomic) IBOutlet NSPanel *aboutWindow;
 @property (assign, nonatomic) IBOutlet NSPanel *configWindow;
+@property (assign, nonatomic) IBOutlet NSPanel *clearBrowsingDataWindow;
 @property (assign, nonatomic) IBOutlet NSWindow *historyWindow;
 @property (assign, nonatomic) IBOutlet NSProgressIndicator *loadingIndicator;
 @property (assign, nonatomic) IBOutlet NSImageView *faviconImage;
@@ -67,9 +68,8 @@
 @property (assign, nonatomic) IBOutlet NSButton *useAboutPageBtn;
 @property (assign, nonatomic) IBOutlet NSImageView *pageStatusImage;
 @property (assign, nonatomic) IBOutlet NSMenu *menuBarBookmarks;
-@property (assign, nonatomic) IBOutlet NSImageView *bookmarksClearedIcon;
 @property (assign, nonatomic) IBOutlet NSImageView *historyClearedIcon;
-@property (assign, nonatomic) IBOutlet NSImageView *historyClearedIcon2;
+@property (assign, nonatomic) IBOutlet NSImageView *browsingDataClearedIcon;
 @property (assign, nonatomic) IBOutlet NSView *sparkSecurePageView;
 @property (assign, nonatomic) IBOutlet NSTextField *sparkSecurePageText;
 @property (assign, nonatomic) IBOutlet NSTextField *sparkSecurePageDetailText;
@@ -80,6 +80,10 @@
 @property (assign, nonatomic) IBOutlet NSView *loadStatusIndicator;
 @property (assign, nonatomic) IBOutlet NSTextField *loadStatusIndicatorText;
 @property (assign, nonatomic) IBOutlet NSButton *enableLoadStatusIndicatorBtn;
+@property (assign, nonatomic) IBOutlet NSButton *clearBrowsingData_browsingHistoryToggle;
+@property (assign, nonatomic) IBOutlet NSButton *clearBrowsingData_cachedFilesToggle;
+@property (assign, nonatomic) IBOutlet NSButton *clearBrowsingData_bookmarksToggle;
+@property (assign, nonatomic) IBOutlet NSButton *clearBrowsingDataConfirmBtn;
 
 #pragma mark - Miscellaneous properties
 @property (nonatomic, assign) long bytesReceived;
@@ -231,12 +235,6 @@
 - (IBAction)addBookmarkAddressBar:(id)sender;
 
 /**
- * Clear the bookmarks array.
- * @param sender
- */
-- (IBAction)clearBookmarks:(id)sender;
-
-/**
  * Clear the history array.
  * @param sender
  */
@@ -271,6 +269,43 @@
  * @param sender
  */
 - (IBAction)manageCertificatesBtnPressed:(id)sender;
+
+/**
+ * Open Clear Browsing Data window.
+ * @param sender
+ */
+- (IBAction)clearBrowsingData:(id)sender;
+
+/**
+ * Clear browsing data and close window.
+ * @param sender
+ */
+- (IBAction)confirmBrowsingDataDeletion:(id)sender;
+
+/**
+ * Close Clear Browsing Data window.
+ * @param sender
+ */
+- (IBAction)cancelClearBrowsingData:(id)sender;
+
+/**
+ * Check whether or not toggle is on and perform actions accordingly.
+ * @param sender
+ */
+- (IBAction)clearBrowsingData_browsingHistory_toggled:(id)sender;
+
+/**
+ * Check whether or not toggle is on and perform actions accordingly.
+ * @param sender
+ */
+- (IBAction)clearBrowsingData_cachedFiles_toggled:(id)sender;
+
+/**
+ * Check whether or not toggle is on and perform actions accordingly.
+ * @param sender
+ */
+- (IBAction)clearBrowsingData_bookmarks_toggled:(id)sender;
+
 
 #pragma mark - Various methods
 - (void)webView:(WebView *)sender didStartProvisionalLoadForFrame:(WebFrame *)frame;

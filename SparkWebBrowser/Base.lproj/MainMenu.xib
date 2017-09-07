@@ -23,8 +23,13 @@
                 <outlet property="backBtn" destination="CSR-Ik-wrT" id="9ar-Ai-zKp"/>
                 <outlet property="bookmarkAddedName" destination="VEY-SJ-d0j" id="xDv-cR-RhI"/>
                 <outlet property="bookmarkAddedView" destination="yET-9q-S0G" id="4Go-sb-pI0"/>
-                <outlet property="bookmarksClearedIcon" destination="rdJ-KI-69a" id="cLT-ZK-XvY"/>
+                <outlet property="browsingDataClearedIcon" destination="orl-ej-3FT" id="h1g-T3-V9O"/>
                 <outlet property="bytesDownloadedText" destination="dwf-zl-wLW" id="euM-ql-uB0"/>
+                <outlet property="clearBrowsingDataConfirmBtn" destination="8EC-VQ-wce" id="4H0-Fq-oJc"/>
+                <outlet property="clearBrowsingDataWindow" destination="Ij2-1D-TQJ" id="ed2-ev-ltU"/>
+                <outlet property="clearBrowsingData_bookmarksToggle" destination="huY-dt-IAc" id="tj1-Fu-CaC"/>
+                <outlet property="clearBrowsingData_browsingHistoryToggle" destination="JGX-8o-MyJ" id="LY3-0o-G00"/>
+                <outlet property="clearBrowsingData_cachedFilesToggle" destination="l3F-BD-6m5" id="oyB-Dn-6UR"/>
                 <outlet property="closeDownloadingViewBtn" destination="A6A-L3-Pmj" id="bde-Oh-kWa"/>
                 <outlet property="configWindow" destination="qp2-Mq-gTe" id="nho-rh-GTX"/>
                 <outlet property="currentReleaseChannel" destination="Nsk-Kz-xZ8" id="YrI-ws-JOD"/>
@@ -44,8 +49,7 @@
                 <outlet property="fileDownloadStatusIcon" destination="L0I-fX-hCW" id="Kdt-2j-MwQ"/>
                 <outlet property="fileDownloadingText" destination="OQ0-32-CRq" id="4XW-55-JXZ"/>
                 <outlet property="forwardBtn" destination="wRb-WG-N9I" id="G2y-ac-Zki"/>
-                <outlet property="historyClearedIcon" destination="orl-ej-3FT" id="KQB-Zr-xca"/>
-                <outlet property="historyClearedIcon2" destination="Psw-WS-ByW" id="WgO-aJ-tTm"/>
+                <outlet property="historyClearedIcon" destination="Psw-WS-ByW" id="SxG-r6-9hG"/>
                 <outlet property="historyWindow" destination="cZf-cc-a2l" id="GER-El-iRP"/>
                 <outlet property="homeBtn" destination="4hs-mM-3d8" id="kN5-La-Hoe"/>
                 <outlet property="homepageBasedOnSearchEngineBtn" destination="5Uw-Fh-cJ1" id="CNY-RK-NbX"/>
@@ -582,6 +586,86 @@ Spark is made possible by the WebKit open source project and other open source s
             </view>
             <point key="canvasLocation" x="944" y="-537"/>
         </window>
+        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="Ij2-1D-TQJ" customClass="NSPanel">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="644" y="458" width="381" height="190"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
+            <view key="contentView" misplaced="YES" id="dq3-sn-19G">
+                <rect key="frame" x="0.0" y="0.0" width="381" height="190"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" allowsCharacterPickerTouchBarItem="YES" id="9hF-jx-28q">
+                        <rect key="frame" x="70" y="137" width="240" height="33"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Clear Browsing Data" id="91I-1b-ixG">
+                            <font key="font" metaFont="system" size="27"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <button misplaced="YES" id="JGX-8o-MyJ">
+                        <rect key="frame" x="18" y="102" width="123" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <buttonCell key="cell" type="check" title="Browsing history" bezelStyle="regularSquare" imagePosition="left" inset="2" id="VgF-SB-7I3">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="clearBrowsingData_browsingHistory_toggled:" target="Voe-Tx-rLC" id="cp5-T6-rJ5"/>
+                        </connections>
+                    </button>
+                    <button misplaced="YES" id="l3F-BD-6m5">
+                        <rect key="frame" x="18" y="82" width="171" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <buttonCell key="cell" type="check" title="Cached images and files" bezelStyle="regularSquare" imagePosition="left" inset="2" id="6fb-JR-7Ks">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="clearBrowsingData_cachedFiles_toggled:" target="Voe-Tx-rLC" id="yc5-Xm-kA2"/>
+                        </connections>
+                    </button>
+                    <button misplaced="YES" id="huY-dt-IAc">
+                        <rect key="frame" x="18" y="62" width="90" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <buttonCell key="cell" type="check" title="Bookmarks" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Hdn-hS-ju6">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="clearBrowsingData_bookmarks_toggled:" target="Voe-Tx-rLC" id="L3s-WY-d7J"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" misplaced="YES" id="8EC-VQ-wce">
+                        <rect key="frame" x="204" y="13" width="163" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                        <buttonCell key="cell" type="push" title="Clear Browsing Data" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FDQ-Vh-d4W">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="confirmBrowsingDataDeletion:" target="Voe-Tx-rLC" id="jkg-Pl-we0"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" misplaced="YES" id="uTP-nG-PvR">
+                        <rect key="frame" x="122" y="13" width="82" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                        <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ly1-W3-vTh">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="cancelClearBrowsingData:" target="Voe-Tx-rLC" id="29W-Xw-irN"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </view>
+            <point key="canvasLocation" x="1453.5" y="-806"/>
+        </window>
         <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="MMA-4M-Pa4" userLabel="Preferences Window" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -888,53 +972,33 @@ Spark is made possible by the WebKit open source project and other open source s
                                             <rect key="frame" x="17" y="149" width="582" height="5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         </box>
-                                        <button verticalHuggingPriority="750" misplaced="YES" id="eCi-mg-vQd">
-                                            <rect key="frame" x="11" y="43" width="143" height="32"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="push" title="Clear Bookmarks" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HXw-eI-7qG">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="clearBookmarks:" target="Voe-Tx-rLC" id="Bnv-kJ-2XP"/>
-                                            </connections>
-                                        </button>
                                         <button verticalHuggingPriority="750" misplaced="YES" id="2YR-eh-zct">
-                                            <rect key="frame" x="11" y="73" width="119" height="32"/>
+                                            <rect key="frame" x="11" y="83" width="163" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="push" title="Clear History" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8nk-3h-nLU">
+                                            <buttonCell key="cell" type="push" title="Clear Browsing Data" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8nk-3h-nLU">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="clearHistory:" target="Voe-Tx-rLC" id="xb7-vd-CW3"/>
+                                                <action selector="clearBrowsingData:" target="Voe-Tx-rLC" id="RGC-k6-VHX"/>
                                             </connections>
                                         </button>
-                                        <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="rdJ-KI-69a">
-                                            <rect key="frame" x="156" y="55" width="12" height="12"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSMenuOnStateTemplate" id="D0d-zP-mbg"/>
-                                        </imageView>
                                         <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="orl-ej-3FT">
-                                            <rect key="frame" x="132" y="85" width="12" height="12"/>
+                                            <rect key="frame" x="176" y="95" width="12" height="12"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSMenuOnStateTemplate" id="u6t-Zd-RX7"/>
                                         </imageView>
-                                        <button verticalHuggingPriority="750" misplaced="YES" id="AnO-1i-4yC">
-                                            <rect key="frame" x="11" y="103" width="119" height="32"/>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="YES" id="N7E-bM-Btv">
+                                            <rect key="frame" x="15" y="119" width="96" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="push" title="Clear Cache" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="UAi-OQ-LCe">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                        </button>
-                                        <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="u7S-Zd-9Xk">
-                                            <rect key="frame" x="132" y="115" width="12" height="12"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSMenuOnStateTemplate" id="xnX-v9-CKJ"/>
-                                        </imageView>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Browsing Data" id="mnE-Mk-rT9">
+                                                <font key="font" metaFont="systemSemibold" size="13"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
                                         <button verticalHuggingPriority="750" misplaced="YES" id="xLN-5b-LQt">
-                                            <rect key="frame" x="11" y="10" width="163" height="32"/>
+                                            <rect key="frame" x="282" y="83" width="163" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="push" title="Manage Certificates" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Fnx-gZ-QZg">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -944,10 +1008,10 @@ Spark is made possible by the WebKit open source project and other open source s
                                                 <action selector="manageCertificatesBtnPressed:" target="Voe-Tx-rLC" id="RPP-23-SJj"/>
                                             </connections>
                                         </button>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="YES" id="Ql4-Ul-Av1">
-                                            <rect key="frame" x="246" y="114" width="44" height="17"/>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="YES" id="Byq-Dg-nYT">
+                                            <rect key="frame" x="286" y="119" width="79" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Cache" id="lPn-UV-TU5">
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Certificates" id="9fn-un-b1t">
                                                 <font key="font" metaFont="systemSemibold" size="13"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

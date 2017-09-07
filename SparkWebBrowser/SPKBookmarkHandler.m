@@ -104,16 +104,6 @@
     [appDelegate.menuBarBookmarks addItem:[NSMenuItem separatorItem]];
     
     NSLog(@"SPKBookmarkHandler: Bookmarks cleared.");
-    
-    // Display a checkmark after bookmarks are cleared
-    appDelegate.bookmarksClearedIcon.hidden = NO;
-    
-    // Timer to display the checkmark for 2 seconds
-    int64_t delayInSeconds = 2.0;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void) {
-        appDelegate.bookmarksClearedIcon.hidden = YES;
-    });
 }
 
 - (void)openBookmark:(id)sender {
