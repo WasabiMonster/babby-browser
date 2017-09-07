@@ -1313,8 +1313,6 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
         self.clearBrowsingDataConfirmBtn.enabled = NO;
     }
     
-    [self.clearBrowsingDataWindow setDefaultButtonCell:[self.clearBrowsingDataConfirmBtn cell]];
-    
     self.clearBrowsingDataWindow.isVisible = YES;
     [self.clearBrowsingDataWindow makeKeyAndOrderFront:nil];
     [NSApp activateIgnoringOtherApps:YES];
