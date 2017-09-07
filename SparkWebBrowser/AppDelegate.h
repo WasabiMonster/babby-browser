@@ -84,6 +84,7 @@
 @property (assign, nonatomic) IBOutlet NSButton *clearBrowsingData_cachedFilesToggle;
 @property (assign, nonatomic) IBOutlet NSButton *clearBrowsingData_bookmarksToggle;
 @property (assign, nonatomic) IBOutlet NSButton *clearBrowsingDataConfirmBtn;
+@property (assign, nonatomic) IBOutlet NSMenuItem *privateBrowsingModeToggle;
 
 #pragma mark - Miscellaneous properties
 @property (nonatomic, assign) long bytesReceived;
@@ -306,6 +307,11 @@
  */
 - (IBAction)clearBrowsingData_bookmarks_toggled:(id)sender;
 
+/**
+ * Enable/disable private browsing mode.
+ * @param sender
+ */
+- (IBAction)togglePrivateBrowsingMode:(id)sender;
 
 #pragma mark - Various methods
 - (void)webView:(WebView *)sender didStartProvisionalLoadForFrame:(WebFrame *)frame;

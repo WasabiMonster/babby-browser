@@ -69,6 +69,7 @@
                 <outlet property="popupWindowBtn2" destination="Jha-mn-8n9" id="MRQ-um-8jE"/>
                 <outlet property="popupWindowText" destination="MgW-iD-K0u" id="b7h-7O-GgH"/>
                 <outlet property="popupWindowTitle" destination="Ei6-eI-B5u" id="g7J-48-lCf"/>
+                <outlet property="privateBrowsingModeToggle" destination="kt9-jC-zy1" id="acI-2m-w0i"/>
                 <outlet property="releaseChannelPicker" destination="DBB-e5-yay" id="faC-8w-Olv"/>
                 <outlet property="reloadBtn" destination="gZC-HQ-A14" id="jGE-yL-ojT"/>
                 <outlet property="searchEnginePicker" destination="GYw-Eq-qx7" id="whS-kR-ROu"/>
@@ -423,6 +424,13 @@
                             <menuItem title="Show Full History" keyEquivalent="y" id="lBh-Xn-2Mc">
                                 <connections>
                                     <action selector="makeKeyAndOrderFront:" target="cZf-cc-a2l" id="Uz2-SI-1Mv"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="kD5-gI-T9B"/>
+                            <menuItem title="Private Browsing Mode" id="kt9-jC-zy1">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="togglePrivateBrowsingMode:" target="Voe-Tx-rLC" id="zFa-vn-t3b"/>
                                 </connections>
                             </menuItem>
                         </items>

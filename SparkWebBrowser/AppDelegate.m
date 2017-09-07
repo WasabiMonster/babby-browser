@@ -338,6 +338,18 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
         [defaults setBool:NO forKey:@"urlEventOverrideActive"];
     }
     
+    // Check whether or not privateBrowsingModeEnabled key exists
+    if([defaults objectForKey:@"privateBrowsingModeEnabled"] == nil) {
+        NSLog(@"Warning: No value found for key privateBrowsingModeEnabled. Setting now...");
+        [defaults setBool:NO forKey:@"privateBrowsingModeEnabled"];
+    }
+    
+    // Check whether or not privateBrowsingModeEnabled key is set to true
+    if([defaults boolForKey:@"privateBrowsingModeEnabled"] == YES) {
+        NSLog(@"Warning: Spark was closed with private browsing mode enabled. Disabling...");
+        [defaults setBool:NO forKey:@"privateBrowsingModeEnabled"];
+    }
+    
     // Homepage checking
     if([defaults objectForKey:@"userHomepage"] == nil || [[defaults objectForKey:@"userHomepage"] isEqual: @""]) {
         // Homepage is not set
@@ -1405,6 +1417,29 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
     }
 }
 
+- (IBAction)togglePrivateBrowsingMode:(id)sender {
+    
+    if(self.privateBrowsingModeToggle.state == NSOffState) { // Check whether or not toggle is checked
+        // Enable private browsing mode
+        NSLog(@"Enabling private browsing mode...");
+        
+        [defaults setBool:YES forKey:@"privateBrowsingModeEnabled"];
+        
+        self.privateBrowsingModeToggle.state = NSOnState;
+        
+        NSLog(@"Enabled private browsing mode.");
+    } else {
+        // Disable private browsing mode
+        NSLog(@"Disabling private browsing mode...");
+        
+        [defaults setBool:NO forKey:@"privateBrowsingModeEnabled"];
+        
+        self.privateBrowsingModeToggle.state = NSOffState;
+        
+        NSLog(@"Disabled private browsing mode.");
+    }
+}
+
 - (void)checkExperimentalConfig {
     
     // Check if experimental config keys are nil
@@ -2078,8 +2113,10 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
             lastSession = [lastSession substringToIndex:[lastSession rangeOfString:@"/"].location];
         }
         
-        // Add webpage to history
-        [historyHandler addHistoryItem:self.webView.mainFrameURL withHistoryTitle:self.webView.mainFrameTitle];
+        if([defaults boolForKey:@"privateBrowsingModeEnabled"] == NO) { // Check whether or not private browsing mode is enabled
+            // Add webpage to history
+            [historyHandler addHistoryItem:self.webView.mainFrameURL withHistoryTitle:self.webView.mainFrameTitle];
+        }
         
         [self.loadingIndicator stopAnimation:self];
         self.reloadBtn.image = [NSImage imageNamed:NSImageNameRefreshTemplate];
@@ -2192,7 +2229,6 @@ NSMutableArray *untrustedSites = nil; // Array of untrusted websites
 - (void)webView:(WebView *)sender mouseDidMoveOverElement:(NSDictionary *)elementInformation modifierFlags:(NSUInteger)modifierFlags {
     NSArray *keys = [elementInformation objectForKey:WebElementLinkURLKey];
     
-    // here I pass the link to a label
     if (keys != nil) {
         self.loadStatusIndicator.animator.alphaValue = 1; // Set alpha value to 1
         [self.loadStatusIndicatorText setStringValue:[NSString stringWithFormat:@"%@",keys]];
