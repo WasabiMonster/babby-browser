@@ -603,15 +603,6 @@ Spark is made possible by the WebKit open source project and other open source s
                 <rect key="frame" x="0.0" y="0.0" width="381" height="190"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" allowsCharacterPickerTouchBarItem="YES" id="9hF-jx-28q">
-                        <rect key="frame" x="70" y="137" width="240" height="33"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Clear Browsing Data" id="91I-1b-ixG">
-                            <font key="font" metaFont="system" size="27"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
                     <button misplaced="YES" id="JGX-8o-MyJ">
                         <rect key="frame" x="18" y="102" width="123" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -673,6 +664,15 @@ Gw
                             <action selector="cancelClearBrowsingData:" target="Voe-Tx-rLC" id="29W-Xw-irN"/>
                         </connections>
                     </button>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" allowsCharacterPickerTouchBarItem="YES" id="9hF-jx-28q">
+                        <rect key="frame" x="65" y="137" width="251" height="33"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Clear Browsing Data" id="91I-1b-ixG">
+                            <font key="font" metaFont="systemMedium" size="27"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
             </view>
             <point key="canvasLocation" x="1453.5" y="-806"/>
