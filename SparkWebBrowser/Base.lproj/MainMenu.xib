@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="17A360a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
-        <plugIn identifier="com.apple.WebKitIBPlugin" version="12121"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
+        <plugIn identifier="com.apple.WebKitIBPlugin" version="13196"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="system font weights other than Regular or Bold" minToolsVersion="7.0"/>
     </dependencies>
@@ -99,11 +98,11 @@
         </customObject>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
             <items>
-                <menuItem title="Spark" id="1Xt-HY-uBw">
+                <menuItem title="Babby" id="1Xt-HY-uBw">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="Spark" systemMenu="apple" id="uQy-DD-JDr">
+                    <menu key="submenu" title="Babby" systemMenu="apple" id="uQy-DD-JDr">
                         <items>
-                            <menuItem title="About Spark" id="5kV-Vb-QxS">
+                            <menuItem title="About Babby" id="5kV-Vb-QxS">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="openAboutWindow:" target="Voe-Tx-rLC" id="qMD-QL-NB9"/>
@@ -122,7 +121,7 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="DVR-aL-kRi"/>
-                            <menuItem title="Hide Spark" keyEquivalent="h" id="Olw-nP-bQN">
+                            <menuItem title="Hide Babby" keyEquivalent="h" id="Olw-nP-bQN">
                                 <connections>
                                     <action selector="hide:" target="-1" id="PnN-Uc-m68"/>
                                 </connections>
@@ -140,7 +139,7 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
-                            <menuItem title="Quit Spark" keyEquivalent="q" id="4sb-4s-VLi">
+                            <menuItem title="Quit Babby" keyEquivalent="q" id="4sb-4s-VLi">
                                 <connections>
                                     <action selector="terminate:" target="-1" id="Te7-pn-YzF"/>
                                 </connections>
@@ -504,7 +503,7 @@
                                     <action selector="reportIssue:" target="Voe-Tx-rLC" id="n0Q-py-vaY"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Spark Help" keyEquivalent="?" id="vUW-Uo-h2P">
+                            <menuItem title="Babby Help" keyEquivalent="?" id="vUW-Uo-h2P">
                                 <connections>
                                     <action selector="showHelp:" target="-1" id="OKF-cq-Vhp"/>
                                 </connections>
@@ -515,7 +514,7 @@
             </items>
             <point key="canvasLocation" x="944" y="-736"/>
         </menu>
-        <window title="About Spark" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="oJi-1c-Sb5" customClass="NSPanel">
+        <window title="About Babby" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="oJi-1c-Sb5" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="644" y="458" width="317" height="232"/>
@@ -530,7 +529,7 @@
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" id="JIE-U0-fhO">
                             <font key="font" metaFont="miniSystem"/>
                             <string key="title">Copyright © 2014-2017 Insleep. All rights reserved.
-Spark is made possible by the WebKit open source project and other open source software.
+Babby is made possible by the WebKit open source project and other open source software.
 </string>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1311,7 +1310,7 @@ Gw
                     <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="YES" id="e3k-CE-CDi">
                         <rect key="frame" x="323" y="627" width="263" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Tabs are not available in this version of Spark." id="gfc-dE-ICK">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Tabs are not available in this version of Babby." id="gfc-dE-ICK">
                             <font key="font" metaFont="systemLight" size="12"/>
                             <color key="textColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1334,12 +1333,12 @@ Gw
                     <popUpButton hidden="YES" verticalHuggingPriority="750" misplaced="YES" id="vH7-Li-e10">
                         <rect key="frame" x="1078" y="592" width="24" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                        <popUpButtonCell key="cell" type="push" title="Spark Settings Menu" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" transparent="YES" imageScaling="proportionallyDown" inset="2" pullsDown="YES" id="8Pm-Kt-Ofz">
+                        <popUpButtonCell key="cell" type="push" title="Babby Settings Menu" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" transparent="YES" imageScaling="proportionallyDown" inset="2" pullsDown="YES" id="8Pm-Kt-Ofz">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
                             <menu key="menu" id="K2k-qd-8ea">
                                 <items>
-                                    <menuItem title="Spark Settings Menu" hidden="YES" id="fom-no-FU9">
+                                    <menuItem title="Babby Settings Menu" hidden="YES" id="fom-no-FU9">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                     </menuItem>
                                     <menuItem title="Full Screen" keyEquivalent="F" id="dBJ-ep-v0Y">
@@ -1410,7 +1409,7 @@ Gw
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                         <menu key="submenu" title="Help" id="9Bd-9T-507">
                                             <items>
-                                                <menuItem title="About Spark" id="lHH-QS-cRn">
+                                                <menuItem title="About Babby" id="lHH-QS-cRn">
                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                     <connections>
                                                         <action selector="openAboutWindow:" target="Voe-Tx-rLC" id="OQZ-RK-Q99"/>
@@ -1539,7 +1538,7 @@ Gw
                         <rect key="frame" x="34" y="537" width="326" height="104"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="NO" id="rdL-MZ-Z7Z">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="rdL-MZ-Z7Z">
                                 <rect key="frame" x="20" y="10" width="286" height="74"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <shadow key="shadow" blurRadius="2">
@@ -1565,7 +1564,7 @@ Gw
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="NO" id="DD3-2h-Xt5">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="DD3-2h-Xt5">
                                 <rect key="frame" x="49" y="58" width="259" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="SPKSecurePageIndicatorText" id="O0K-0g-7th">
@@ -1580,7 +1579,7 @@ Gw
                         <rect key="frame" x="775" y="492" width="326" height="124"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="NO" id="fhM-ya-3YI">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="fhM-ya-3YI">
                                 <rect key="frame" x="20" y="8" width="286" height="96"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <shadow key="shadow" blurRadius="2">
@@ -1592,7 +1591,7 @@ Gw
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="NO" id="TAy-iy-MF8">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="TAy-iy-MF8">
                                 <rect key="frame" x="29" y="78" width="119" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Create Bookmark" id="1fm-Du-ZKf">
@@ -1601,7 +1600,7 @@ Gw
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="NO" id="4Ge-N4-X01">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="4Ge-N4-X01">
                                 <rect key="frame" x="29" y="53" width="44" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Name:" id="jrN-aO-FCm">
@@ -1610,7 +1609,7 @@ Gw
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="NO" textCompletion="NO" id="VEY-SJ-d0j">
+                            <textField verticalHuggingPriority="750" misplaced="YES" textCompletion="NO" id="VEY-SJ-d0j">
                                 <rect key="frame" x="77" y="50" width="205" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" title="SPKBookmarkSiteName" placeholderString="" bezelStyle="round" id="cXF-Uj-ECj">
@@ -1658,7 +1657,7 @@ Gw
                         <rect key="frame" x="-20" y="-19" width="326" height="56"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="NO" id="fkN-uu-OQa">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="fkN-uu-OQa">
                                 <rect key="frame" x="20" y="19" width="286" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <shadow key="shadow" blurRadius="2">
@@ -1670,7 +1669,7 @@ Gw
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="NO" id="GOI-gg-OmB">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="GOI-gg-OmB">
                                 <rect key="frame" x="19" y="20" width="289" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Loading webpage..." id="idb-W0-H0u">
@@ -1824,7 +1823,7 @@ DQ
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <clipView key="contentView" id="rwn-wd-BYf">
                             <rect key="frame" x="1" y="0.0" width="480" height="298"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" multipleSelection="NO" autosaveColumns="NO" headerView="Hme-14-Aax" id="Exy-nG-ZCS">
                                     <rect key="frame" x="0.0" y="0.0" width="480" height="275"/>
@@ -1909,7 +1908,7 @@ DQ
         </window>
     </objects>
     <resources>
-        <image name="AppIcon256" width="30.719999313354492" height="30.719999313354492"/>
+        <image name="AppIcon256" width="61.439998626708984" height="61.439998626708984"/>
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSBookmarksTemplate" width="17" height="18"/>
@@ -1921,9 +1920,9 @@ DQ
         <image name="NSRefreshTemplate" width="11" height="15"/>
         <image name="NSStopProgressFreestandingTemplate" width="14" height="14"/>
         <image name="SparkIcon256" width="61.439998626708984" height="61.439998626708984"/>
-        <image name="bing-search-engine-icon" width="16" height="16"/>
-        <image name="duckduckgo-search-engine-icon" width="16" height="16"/>
-        <image name="google-search-engine-icon" width="16" height="16"/>
-        <image name="yahoo-search-engine-icon" width="16" height="16"/>
+        <image name="bing-search-engine-icon" width="32" height="32"/>
+        <image name="duckduckgo-search-engine-icon" width="32" height="32"/>
+        <image name="google-search-engine-icon" width="32" height="32"/>
+        <image name="yahoo-search-engine-icon" width="32" height="32"/>
     </resources>
 </document>
